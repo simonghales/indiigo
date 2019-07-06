@@ -7,8 +7,8 @@ const Container = styled('div')`
   margin-top: 15px;
 `;
 
-const PostComments = () => (
-  <Container>
+const PostComments = ({ ...otherProps }) => (
+  <Container {...otherProps}>
     <Comments />
   </Container>
 );

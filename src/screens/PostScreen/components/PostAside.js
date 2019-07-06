@@ -2,22 +2,37 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { FaAngleLeft } from 'react-icons/fa';
+import { css } from 'emotion';
 import SiteLogo from '../../../components/SiteLogo';
 import ProfileBadge from '../../../components/ProfileBadge';
 import ReturnButton from './ReturnButton';
 import { CommentsButton, LikeButton } from '../../../components/RoundButton';
 import PostDetails from '../../../components/PostDetails';
 import PostComments from './PostComments';
+import { BREAKPOINTS } from '../../../styles/responsive';
+import { mobileSidePadding } from '../../../styles/layout';
 
 const Container = styled('div')`
+  ${mobileSidePadding};
   position: relative;
-  min-height: 100vh;
+
+  ${BREAKPOINTS.desktop} {
+    min-height: 100vh;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    margin: 15px 0;
+  }
 `;
 
 const Nav = styled('nav')`
   position: fixed;
   top: 30px;
   z-index: 100;
+
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
 
   &::before {
     content: '';
@@ -49,13 +64,18 @@ const NavContent = styled('div')`
 const Top = styled('section')`
   display: flex;
   justify-content: flex-end;
-  margin-top: 81px;
+
+  ${BREAKPOINTS.desktop} {
+    margin-top: 81px;
+  }
 `;
 
 const TopContent = styled('div')`
-  width: calc((100% + 15px) * 0.666667);
-  display: flex;
-  flex-direction: column;
+  ${BREAKPOINTS.desktop} {
+    width: calc((100% + 15px) * 0.666667);
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const LikesContainer = styled('div')`
@@ -63,6 +83,10 @@ const LikesContainer = styled('div')`
   align-items: center;
   margin-bottom: 30px;
   align-self: flex-end;
+
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
 
   span {
     display: inline-block;
@@ -79,6 +103,10 @@ const CommentsContainer = styled('div')`
   align-items: center;
   margin-left: -3px;
 
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
+
   span {
     display: inline-block;
     margin-left: 8px;
@@ -86,6 +114,12 @@ const CommentsContainer = styled('div')`
     font-size: 11.5px;
     color: #a0abff;
     letter-spacing: 0.16px;
+  }
+`;
+
+const commentsClass = css`
+  ${BREAKPOINTS.mobile} {
+    display: none;
   }
 `;
 
@@ -111,7 +145,7 @@ const PostAside = () => (
         </CommentsContainer>
       </TopContent>
     </Top>
-    <PostComments />
+    <PostComments className={commentsClass} />
   </Container>
 );
 

@@ -39,13 +39,17 @@ const Wrapper = styled('div')`
 `;
 
 const Container = styled('div')`
-  ${gridLayoutCss};
-  ${maxWidthLayoutCss};
+  ${BREAKPOINTS.desktop} {
+    ${gridLayoutCss};
+    ${maxWidthLayoutCss};
+  }
 `;
 
 const LeftAside = styled('div')`
-  grid-column: span 3;
-  padding-right: 30px;
+  ${BREAKPOINTS.desktop} {
+    grid-column: span 3;
+    padding-right: 30px;
+  }
 
   ${BREAKPOINTS.desktop} {
     .fade-enter & {
@@ -73,10 +77,16 @@ const LeftAside = styled('div')`
 `;
 
 const Main = styled('main')`
-  grid-column: span 9;
-  min-height: 100vh;
-  position: relative;
-  z-index: 200;
+  ${BREAKPOINTS.desktop} {
+    grid-column: span 9;
+    min-height: 100vh;
+    position: relative;
+    z-index: 200;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    background-color: #ffffff;
+  }
 `;
 
 const MainBackground = styled('div')`
@@ -85,6 +95,10 @@ const MainBackground = styled('div')`
   top: 0;
   bottom: 0;
   width: calc(100% + 30px + ((100vw - 1290px) / 2));
+
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
 
   &::before {
     content: '';

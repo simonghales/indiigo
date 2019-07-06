@@ -2,9 +2,16 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { largeHeadingCss } from '../../styles/typography';
+import { BREAKPOINTS } from '../../styles/responsive';
 
 const Container = styled('div')`
-  padding: 84px 30px 30px 30px;
+  ${BREAKPOINTS.desktop} {
+    padding: 84px 30px 30px 30px;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    padding: 32px 16px 50px 16px;
+  }
 
   p {
     margin-top: 15px;
