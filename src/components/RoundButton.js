@@ -2,8 +2,10 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { css, cx } from 'emotion';
+import { FaRegComments, FaRegHeart } from 'react-icons/fa';
 import { buttonResetCss } from '../styles/buttons';
 import { lightFillCss, roundBackShadowCss } from '../styles/shared/fills';
+import { vibrantColor } from '../styles/colors';
 
 const classNames = {
   button: 'button',
@@ -60,6 +62,11 @@ const IconWrapper = styled('div')`
   justify-content: center;
   color: #a0abff;
   position: relative;
+  transition: color 250ms ease;
+
+  &:hover {
+    color: ${vibrantColor};
+  }
 `;
 
 const RoundCircle = styled('div')`
@@ -96,4 +103,26 @@ export const RoundIconButton = ({ children }) => (
     <RoundCircle />
     <IconWrapper>{children}</IconWrapper>
   </RoundButton>
+);
+
+const heartClass = css`
+  position: relative;
+  top: 1.5px;
+`;
+
+export const LikeButton = () => (
+  <RoundIconButton>
+    <FaRegHeart className={heartClass} size={17} />
+  </RoundIconButton>
+);
+
+const commentsClass = css`
+  position: relative;
+  top: 1px;
+`;
+
+export const CommentsButton = () => (
+  <RoundIconButton>
+    <FaRegComments className={commentsClass} size={20} />
+  </RoundIconButton>
 );

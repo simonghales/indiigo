@@ -9,7 +9,8 @@ import CardIcons from './components/CardIcons';
 import ProfileBadge from '../ProfileBadge';
 import QuotedComments from './components/QuotedComments';
 import { detailsTextCss } from '../../styles/typography';
-import RoundButton, { RoundIconButton } from '../RoundButton';
+import RoundButton, { CommentsButton, LikeButton, RoundIconButton } from '../RoundButton';
+import { vibrantColor } from '../../styles/colors';
 
 const Container = styled('article')`
   display: grid;
@@ -57,6 +58,12 @@ const CardPostTitle = styled('h3')`
   a {
     color: inherit;
     text-decoration: none;
+    transition: color 350ms ease;
+
+    &:hover {
+      color: ${vibrantColor};
+      transition: color 200ms ease;
+    }
   }
 `;
 
@@ -109,16 +116,6 @@ const Details = styled('div')`
   }
 `;
 
-const heartClass = css`
-  position: relative;
-  top: 1.5px;
-`;
-
-const commentsClass = css`
-  position: relative;
-  top: 1px;
-`;
-
 const PostCard = () => (
   <Container>
     <Aside>
@@ -140,14 +137,10 @@ const PostCard = () => (
         <QuotedComments />
         <Options>
           <Option>
-            <RoundIconButton>
-              <FaRegHeart className={heartClass} size={17} />
-            </RoundIconButton>
+            <LikeButton />
           </Option>
           <Option>
-            <RoundIconButton>
-              <FaRegComments className={commentsClass} size={20} />
-            </RoundIconButton>
+            <CommentsButton />
           </Option>
         </Options>
       </ProfileWrapper>

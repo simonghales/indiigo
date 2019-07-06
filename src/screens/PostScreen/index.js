@@ -7,6 +7,8 @@ import { gridLayoutCss, maxWidthLayoutCss } from '../../styles/layout';
 import ProfileBadge from '../../components/ProfileBadge';
 import Post from '../../components/Post/Post';
 import TransitionSlider from './components/TransitionSlider';
+import SiteLogo from '../../components/SiteLogo';
+import PostAside from './components/PostAside';
 
 const Wrapper = styled('div')`
   overflow: hidden;
@@ -22,6 +24,10 @@ const Wrapper = styled('div')`
     z-index: 500;
   }
 
+  &.fade-exit {
+    pointer-events: none;
+  }
+
   &.fade-exit.fade-exit-active,
   &.fade-enter.fade-enter-active {
     background: rgba(255, 255, 255, 0);
@@ -34,7 +40,7 @@ const Container = styled('div')`
   ${maxWidthLayoutCss};
 `;
 
-const LeftAside = styled('aside')`
+const LeftAside = styled('div')`
   grid-column: span 3;
   padding-right: 30px;
 
@@ -133,9 +139,7 @@ const PostScreen = () => {
     <Wrapper>
       <Container>
         <LeftAside>
-          <section>indiigo</section>
-          <section>number of likes</section>
-          <ProfileBadge />
+          <PostAside />
         </LeftAside>
         <Main>
           <MainBackground>{animate && <TransitionSlider />}</MainBackground>
