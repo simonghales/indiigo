@@ -11,6 +11,7 @@ const Container = styled('div')`
   &.fade-exit {
     opacity: 1;
     transition: opacity 200ms 50ms ease;
+    pointer-events: none;
   }
 
   &.fade-exit.fade-exit-active {

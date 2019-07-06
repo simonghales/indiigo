@@ -15,7 +15,7 @@ const Routes = () => {
       <CSSTransition
         key={location.pathname}
         classNames={validRoute ? 'fade' : ''}
-        timeout={validRoute ? 500 : 0}
+        timeout={validRoute ? 700 : 0}
       >
         <Switch location={location}>
           <Route exact path="/" component={LandingScreen} />

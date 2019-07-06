@@ -34,46 +34,66 @@ const Wrapper = styled('div')`
 const Container = styled('div')`
   ${gridLayoutCss};
   ${maxWidthLayoutCss};
-
-  .fade-enter & {
-    opacity: 0;
-    transition: opacity 150ms ease 350ms;
-  }
-
-  .fade-enter.fade-enter-active & {
-    opacity: 1;
-  }
 `;
 
 const LeftAside = styled('aside')`
   grid-column: span 3;
   padding-right: 30px;
+
+  .fade-enter & {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
+  }
+
+  .fade-enter.fade-enter-active & {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 const Main = styled('main')`
-  grid-column: span 8;
+  grid-column: span 9;
   min-height: 100vh;
-  background-color: #ffffff;
   position: relative;
+`;
+
+const MainBackground = styled('div')`
+  position: absolute;
+  left: -30px;
+  top: 0;
+  bottom: 0;
+  width: calc(100% + 30px + ((100vw - 1290px) / 2));
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    right: 100%;
+    left: 0;
     bottom: 0;
-    width: 30px;
+    right: 0;
     background-color: #ffffff;
+
+    .fade-enter & {
+      opacity: 0;
+      transition: opacity 150ms ease 400ms;
+    }
+
+    .fade-enter.fade-enter-active & {
+      opacity: 1;
+    }
+  }
+`;
+
+const MainContent = styled('div')`
+  position: relative;
+  .fade-enter & {
+    opacity: 0;
+    transition: opacity 350ms ease 250ms;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 100%;
-    bottom: 0;
-    width: 50vw;
-    background-color: #ffffff;
+  .fade-enter.fade-enter-active & {
+    opacity: 1;
   }
 `;
 
@@ -82,7 +102,6 @@ const PostScreen = () => {
   const animate = lastLocation && lastLocation.pathname === '/';
   return (
     <Wrapper>
-      {animate && <TransitionSlider />}
       <Container>
         <LeftAside>
           <section>indiigo</section>
@@ -90,7 +109,10 @@ const PostScreen = () => {
           <ProfileBadge />
         </LeftAside>
         <Main>
-          <Post />
+          <MainBackground>{animate && <TransitionSlider />}</MainBackground>
+          <MainContent>
+            <Post />
+          </MainContent>
         </Main>
       </Container>
     </Wrapper>
