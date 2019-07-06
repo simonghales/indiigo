@@ -1,6 +1,7 @@
 // @flow
 
 import { css } from 'emotion';
+import { BREAKPOINTS } from './responsive';
 
 export const gridLayoutCss = css`
   display: grid;
@@ -14,4 +15,11 @@ export const maxWidthLayoutCss = css`
   margin-right: auto;
   padding-left: 30px;
   padding-right: 30px;
+`;
+
+export const mobileSidePadding = css`
+  ${BREAKPOINTS.mobile} {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 `;

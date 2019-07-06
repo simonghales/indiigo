@@ -6,6 +6,7 @@ import { FaRegComments, FaRegHeart } from 'react-icons/fa';
 import { buttonResetCss } from '../styles/buttons';
 import { lightFillCss, roundBackShadowCss } from '../styles/shared/fills';
 import { vibrantColor } from '../styles/colors';
+import { BREAKPOINTS } from '../styles/responsive';
 
 const classNames = {
   button: 'button',
@@ -31,6 +32,10 @@ const Content = styled('div')`
   border-radius: 50%;
   position: relative;
   transition: box-shadow 250ms ease;
+
+  ${BREAKPOINTS.mobile} {
+    border-width: 2px;
+  }
 
   .${classNames.button}:hover & {
     box-shadow: 0 1px 2px 0 rgba(26, 40, 75, 0.07);

@@ -1,24 +1,19 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import { css } from 'emotion';
+import CircleButton from '../../CircleButton';
 
 const Header = styled('header')`
   position: relative;
   line-height: 12px;
 `;
 
-const Vote = styled('div')`
+const voteClass = css`
   position: absolute;
-  top: -1px;
+  top: -2px;
   right: 100%;
   margin-right: 2px;
-  padding: 3px 3px;
-  cursor: pointer;
-  border-radius: 50%;
-
-  svg {
-    display: block;
-  }
 `;
 
 const HeaderText = styled('span')`
@@ -59,11 +54,11 @@ const Options = styled('div')`
 const Comment = () => (
   <div>
     <Header>
-      <Vote>
+      <CircleButton size={18} className={voteClass}>
         <svg width="8" height="8" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 0l4 8H0z" fill="#A0ABFF" fillRule="evenodd" fillOpacity=".499" />
         </svg>
-      </Vote>
+      </CircleButton>
       <HeaderText>
         <Name>Simon Hales</Name>
         {` `}

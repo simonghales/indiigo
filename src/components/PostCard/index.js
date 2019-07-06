@@ -12,16 +12,28 @@ import { detailsTextCss } from '../../styles/typography';
 import RoundButton, { CommentsButton, LikeButton, RoundIconButton } from '../RoundButton';
 import { vibrantColor } from '../../styles/colors';
 import PostDetails from '../PostDetails';
+import { BREAKPOINTS } from '../../styles/responsive';
 
 const Container = styled('article')`
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: 30px;
+  ${BREAKPOINTS.desktop} {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: 30px;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const MainCard = styled('section')`
   grid-column: span 6;
   position: relative;
+
+  ${BREAKPOINTS.mobile} {
+    order: 1;
+  }
 
   &::before {
     content: '';
@@ -41,6 +53,10 @@ const Content = styled('div')`
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(25, 36, 133, 0.04);
+
+  ${BREAKPOINTS.mobile} {
+    padding: 10px;
+  }
 `;
 
 const CardHeader = styled('header')`
@@ -72,20 +88,31 @@ const Preview = styled('div')`
   background: #f2f1fb;
   border-radius: 5px;
   min-height: 340px;
+
+  ${BREAKPOINTS.mobile} {
+    height: 50vw;
+    min-height: unset;
+  }
 `;
 
 const Aside = styled('aside')`
   min-width: 0;
   grid-column: span 2;
+
+  ${BREAKPOINTS.mobile} {
+    order: 2;
+    padding: 0 10px;
+  }
 `;
 
 const ProfileWrapper = styled('div')`
   margin-top: 22px;
+  ${BREAKPOINTS.mobile} {
+    margin-top: 10px;
+  }
 `;
 
 const Options = styled('section')`
-  margin-left: -3px;
-  margin-top: 15px;
   display: flex;
 `;
 
@@ -95,21 +122,57 @@ const Option = styled('div')`
   }
 `;
 
+const commentsClass = css`
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
+`;
+
+const desktopOptionsClass = css`
+  margin-left: -3px;
+  margin-top: 15px;
+
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
+`;
+
+const mobileOptionsClass = css`
+  margin-right: -2px;
+  ${BREAKPOINTS.desktop} {
+    display: none;
+  }
+`;
+
+const ProfileBadgeWrapper = styled('div')`
+  ${BREAKPOINTS.mobile} {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const PostOptions = ({ ...otherProps }) => (
+  <Options {...otherProps}>
+    <Option>
+      <LikeButton />
+    </Option>
+    <Option>
+      <CommentsButton />
+    </Option>
+  </Options>
+);
+
 const PostCard = () => (
   <Container>
     <Aside>
       <ProfileWrapper>
-        <ProfileBadge />
+        <ProfileBadgeWrapper>
+          <ProfileBadge />
+          <PostOptions className={mobileOptionsClass} />
+        </ProfileBadgeWrapper>
         <PostDetails truncate />
-        <QuotedComments />
-        <Options>
-          <Option>
-            <LikeButton />
-          </Option>
-          <Option>
-            <CommentsButton />
-          </Option>
-        </Options>
+        <QuotedComments className={commentsClass} />
+        <PostOptions className={desktopOptionsClass} />
       </ProfileWrapper>
     </Aside>
     <MainCard>

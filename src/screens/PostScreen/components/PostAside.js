@@ -15,11 +15,21 @@ const Container = styled('div')`
 `;
 
 const Nav = styled('nav')`
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
   position: fixed;
-  top: 0;
+  top: 30px;
+  z-index: 100;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: -2px;
+    right: -5px;
+    bottom: -2px;
+    background-color: rgba(248, 248, 246, 0.8);
+    box-shadow: 0 0 10px rgba(248, 248, 246, 0.5);
+    border-radius: 10px;
+  }
 
   svg {
     display: block;
@@ -28,6 +38,12 @@ const Nav = styled('nav')`
       margin-left: 3px;
     }
   }
+`;
+
+const NavContent = styled('div')`
+  display: flex;
+  align-items: center;
+  position: relative;
 `;
 
 const Top = styled('section')`
@@ -76,8 +92,10 @@ const CommentsContainer = styled('div')`
 const PostAside = () => (
   <Container>
     <Nav>
-      <ReturnButton />
-      <SiteLogo />
+      <NavContent>
+        <ReturnButton />
+        <SiteLogo />
+      </NavContent>
     </Nav>
     <Top>
       <TopContent>

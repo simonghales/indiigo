@@ -3,9 +3,15 @@ import React from 'react';
 import TextTruncate from 'react-text-truncate';
 import styled from 'react-emotion';
 import { detailsTextCss } from '../styles/typography';
+import { BREAKPOINTS } from '../styles/responsive';
 
 const Info = styled('section')`
   margin: 11px 0 20px 0;
+
+  ${BREAKPOINTS.mobile} {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
 
   p {
   }
@@ -14,6 +20,10 @@ const Info = styled('section')`
 const Details = styled('div')`
   ${detailsTextCss};
   margin-top: 4px;
+
+  ${BREAKPOINTS.mobile} {
+    margin-top: 2px;
+  }
 
   span {
     &:not(:last-child) {
