@@ -8,18 +8,22 @@ import ReturnButton from './ReturnButton';
 import { LikeButton } from '../../../components/RoundButton';
 
 const Container = styled('div')`
-  padding-top: 30px;
+  position: relative;
+  min-height: 100vh;
 `;
 
 const Nav = styled('nav')`
+  padding-top: 30px;
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
 
   svg {
     display: block;
 
     &:not(:first-child) {
-      margin-left: 5px;
+      margin-left: 3px;
     }
   }
 `;
@@ -27,6 +31,7 @@ const Nav = styled('nav')`
 const Top = styled('section')`
   display: flex;
   justify-content: flex-end;
+  margin-top: 81px;
 `;
 
 const TopContent = styled('div')`
@@ -40,7 +45,6 @@ const LikesContainer = styled('div')`
   align-items: center;
   margin-bottom: 30px;
   align-self: flex-end;
-  margin-top: 26px;
 
   span {
     display: inline-block;
