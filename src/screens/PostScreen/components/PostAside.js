@@ -5,7 +5,9 @@ import { FaAngleLeft } from 'react-icons/fa';
 import SiteLogo from '../../../components/SiteLogo';
 import ProfileBadge from '../../../components/ProfileBadge';
 import ReturnButton from './ReturnButton';
-import { LikeButton } from '../../../components/RoundButton';
+import { CommentsButton, LikeButton } from '../../../components/RoundButton';
+import PostDetails from '../../../components/PostDetails';
+import PostComments from './PostComments';
 
 const Container = styled('div')`
   position: relative;
@@ -56,6 +58,21 @@ const LikesContainer = styled('div')`
   }
 `;
 
+const CommentsContainer = styled('div')`
+  display: flex;
+  align-items: center;
+  margin-left: -3px;
+
+  span {
+    display: inline-block;
+    margin-left: 8px;
+    font-weight: 700;
+    font-size: 11.5px;
+    color: #a0abff;
+    letter-spacing: 0.16px;
+  }
+`;
+
 const PostAside = () => (
   <Container>
     <Nav>
@@ -69,8 +86,14 @@ const PostAside = () => (
           <LikeButton />
         </LikesContainer>
         <ProfileBadge />
+        <PostDetails />
+        <CommentsContainer>
+          <CommentsButton />
+          <span>4 comments</span>
+        </CommentsContainer>
       </TopContent>
     </Top>
+    <PostComments />
   </Container>
 );
 

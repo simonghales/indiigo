@@ -47,23 +47,23 @@ const LeftAside = styled('div')`
   .fade-enter & {
     opacity: 0;
     transform: translateY(-15px);
-    transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
   }
 
   .fade-enter.fade-enter-active & {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
   }
 
   .fade-exit & {
     opacity: 1;
     transform: translateY(0);
-    transition: all 200ms ease;
   }
 
   .fade-exit.fade-exit-active & {
     opacity: 0;
     transform: translateY(-15px);
+    transition: all 200ms ease;
   }
 `;
 
@@ -91,23 +91,23 @@ const MainBackground = styled('div')`
 
     .fade-enter & {
       opacity: 0;
-      transition: opacity 150ms ease 400ms;
     }
 
     .fade-enter.fade-enter-active & {
       opacity: 1;
+      transition: opacity 150ms ease 400ms;
     }
   }
 
   .fade-exit & {
     opacity: 1;
     transform: translateX(0);
-    transition: transform 600ms ease, opacity 300ms 300ms ease;
   }
 
   .fade-exit.fade-exit-active & {
     transform: translateX(-100vw);
     opacity: 0;
+    transition: transform 600ms ease, opacity 300ms 300ms ease;
   }
 `;
 
@@ -115,11 +115,11 @@ const MainContent = styled('div')`
   position: relative;
   .fade-enter & {
     opacity: 0;
-    transition: opacity 350ms ease 250ms;
   }
 
   .fade-enter.fade-enter-active & {
     opacity: 1;
+    transition: opacity 350ms ease 250ms;
   }
 
   .fade-exit & {

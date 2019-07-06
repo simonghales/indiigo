@@ -11,6 +11,7 @@ import QuotedComments from './components/QuotedComments';
 import { detailsTextCss } from '../../styles/typography';
 import RoundButton, { CommentsButton, LikeButton, RoundIconButton } from '../RoundButton';
 import { vibrantColor } from '../../styles/colors';
+import PostDetails from '../PostDetails';
 
 const Container = styled('article')`
   display: grid;
@@ -82,13 +83,6 @@ const ProfileWrapper = styled('div')`
   margin-top: 22px;
 `;
 
-const Info = styled('section')`
-  margin: 11px 0 20px 0;
-
-  p {
-  }
-`;
-
 const Options = styled('section')`
   margin-left: -3px;
   margin-top: 15px;
@@ -101,39 +95,12 @@ const Option = styled('div')`
   }
 `;
 
-const Details = styled('div')`
-  ${detailsTextCss};
-  margin-top: 4px;
-
-  span {
-    &:not(:last-child) {
-      &::after {
-        content: '‧';
-        display: inline-block;
-        margin: 0 7px;
-      }
-    }
-  }
-`;
-
 const PostCard = () => (
   <Container>
     <Aside>
       <ProfileWrapper>
         <ProfileBadge />
-        <Info>
-          <p>
-            <TextTruncate
-              line={2}
-              text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam."
-              truncateText="…"
-            />
-          </p>
-          <Details>
-            <span>posted today</span>
-            <span>options</span>
-          </Details>
-        </Info>
+        <PostDetails truncate />
         <QuotedComments />
         <Options>
           <Option>
