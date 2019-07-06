@@ -17,6 +17,16 @@ const Container = styled('div')`
   &.fade-exit.fade-exit-active {
     opacity: 0;
   }
+
+  &.fade-enter {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.fade-enter.fade-enter-active {
+    transition: all 400ms 300ms ease;
+    opacity: 1;
+  }
 `;
 
 const Newsfeed = styled('section')`

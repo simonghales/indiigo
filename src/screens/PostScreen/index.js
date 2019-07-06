@@ -11,6 +11,7 @@ import TransitionSlider from './components/TransitionSlider';
 const Wrapper = styled('div')`
   overflow: hidden;
 
+  &.fade-exit,
   &.fade-enter {
     position: fixed;
     top: 0;
@@ -21,13 +22,10 @@ const Wrapper = styled('div')`
     z-index: 500;
   }
 
+  &.fade-exit.fade-exit-active,
   &.fade-enter.fade-enter-active {
     background: rgba(255, 255, 255, 0);
     transition: background 500ms ease-in;
-  }
-
-  &.fade-exit {
-    display: none;
   }
 `;
 
@@ -49,6 +47,17 @@ const LeftAside = styled('aside')`
   .fade-enter.fade-enter-active & {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .fade-exit & {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 200ms ease;
+  }
+
+  .fade-exit.fade-exit-active & {
+    opacity: 0;
+    transform: translateY(-15px);
   }
 `;
 
@@ -83,6 +92,17 @@ const MainBackground = styled('div')`
       opacity: 1;
     }
   }
+
+  .fade-exit & {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 600ms ease, opacity 300ms 300ms ease;
+  }
+
+  .fade-exit.fade-exit-active & {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
 `;
 
 const MainContent = styled('div')`
@@ -94,6 +114,15 @@ const MainContent = styled('div')`
 
   .fade-enter.fade-enter-active & {
     opacity: 1;
+  }
+
+  .fade-exit & {
+    opacity: 1;
+    transition: all 200ms ease;
+  }
+
+  .fade-exit.fade-exit-active & {
+    opacity: 0;
   }
 `;
 
