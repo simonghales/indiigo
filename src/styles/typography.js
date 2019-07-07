@@ -16,6 +16,13 @@ export const largeHeadingCss = css`
   letter-spacing: 0.33px;
 `;
 
+export const mediumHeadingCss = css`
+  font-weight: 600;
+  font-size: 16px;
+  color: #0c2340;
+  letter-spacing: 0.22px;
+`;
+
 export const smallBoldCss = css`
   font-weight: 700;
   font-size: 11.5px;

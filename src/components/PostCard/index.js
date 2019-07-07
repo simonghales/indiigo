@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import CardIcons from './components/CardIcons';
 import ProfileBadge from '../ProfileBadge';
 import QuotedComments from './components/QuotedComments';
-import { detailsTextCss } from '../../styles/typography';
-import RoundButton, { CommentsButton, LikeButton, RoundIconButton } from '../RoundButton';
+import { detailsTextCss, mediumHeadingCss } from '../../styles/typography';
+import { CommentsButton, LikeButton } from '../RoundButton';
 import { vibrantColor } from '../../styles/colors';
 import PostInfo from '../PostInfo';
 import { BREAKPOINTS } from '../../styles/responsive';
@@ -67,10 +67,7 @@ const CardHeader = styled('header')`
 `;
 
 const CardPostTitle = styled('h3')`
-  font-weight: 600;
-  font-size: 16px;
-  color: #0c2340;
-  letter-spacing: 0.22px;
+  ${mediumHeadingCss};
   margin-right: 13px;
 
   a {

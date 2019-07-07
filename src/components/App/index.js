@@ -22,8 +22,10 @@ const Routes = () => {
   const lastLocation = useLastLocation();
   const stuff = useContext(__RouterContext);
   const { location } = stuff;
-  const validPreviousRoute = lastLocation && animateRoute(lastLocation);
-  const validRoute = animateRoute(location);
+  // const validPreviousRoute = lastLocation && animateRoute(lastLocation);
+  // const validRoute = animateRoute(location);
+  const validPreviousRoute = true;
+  const validRoute = true;
   return (
     <div
       className={cx({

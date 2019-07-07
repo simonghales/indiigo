@@ -20,7 +20,7 @@ const Container = styled('div')`
 
 const ThumbnailWrapper = styled('div')`
   position: relative;
-  margin-right: 8px;
+  margin-right: 6px;
 
   ${BREAKPOINTS.mobile} {
     margin-right: 5px;

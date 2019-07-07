@@ -230,7 +230,7 @@ const commentsClass = css`
 
 const PostScreen = () => {
   const lastLocation = useLastLocation();
-  const animate = lastLocation && lastLocation.pathname === '/';
+  const animate = !!lastLocation;
   return (
     <Wrapper>
       <Container>

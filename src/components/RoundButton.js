@@ -44,17 +44,19 @@ const Content = styled('div')`
 
 type Props = {
   className?: string,
+  contentClassName?: string,
   children: any,
 };
 
-const RoundButton = ({ className, children }: Props) => (
-  <Button className={cx(classNames.button, className)}>
-    <Content>{children}</Content>
+const RoundButton = ({ className, contentClassName, children, ...otherProps }: Props) => (
+  <Button className={cx(classNames.button, className)} {...otherProps}>
+    <Content className={contentClassName}>{children}</Content>
   </Button>
 );
 
 RoundButton.defaultProps = {
   className: '',
+  contentClassName: '',
 };
 
 export default RoundButton;
@@ -103,11 +105,51 @@ const RoundCircle = styled('div')`
   }
 `;
 
-export const RoundIconButton = ({ children }) => (
-  <RoundButton>
-    <RoundCircle />
+const rectangleButtonClass = css`
+  width: 100%;
+
+  &::before {
+    border-radius: 10px;
+  }
+`;
+
+const rectangleButtonContentClass = css`
+  width: 100%;
+  border-radius: 10px;
+`;
+
+const rectangleUnderlayClass = css`
+  border-radius: 10px;
+
+  &::before {
+    height: unset;
+    transform: translateX(100%);
+    transition: transform 400ms ease;
+
+    .${classNames.button}:hover & {
+      height: unset;
+      transform: translateX(0);
+      transition: transform 250ms ease;
+    }
+  }
+`;
+
+export const RoundIconButton = ({ children, underlayClassName = '', ...otherProps }) => (
+  <RoundButton {...otherProps}>
+    <RoundCircle className={underlayClassName} />
     <IconWrapper>{children}</IconWrapper>
   </RoundButton>
+);
+
+export const RectangleButton = ({ children, ...otherProps }) => (
+  <RoundIconButton
+    className={rectangleButtonClass}
+    contentClassName={rectangleButtonContentClass}
+    underlayClassName={rectangleUnderlayClass}
+    {...otherProps}
+  >
+    {children}
+  </RoundIconButton>
 );
 
 const heartClass = css`

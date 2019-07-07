@@ -9,6 +9,7 @@ import {
   routeTransitionDisabledState,
   routeTransitionEnabledState,
 } from '../../styles/shared/transitions';
+import PostsList from '../../components/PostsList';
 
 const Container = styled('div')`
   ${mobileSidePadding};
@@ -69,22 +70,10 @@ const Newsfeed = styled('section')`
   grid-column: 2 / span 8;
 `;
 
-const NewsfeedItem = styled('div')`
-  margin: 80px 0;
-
-  ${BREAKPOINTS.mobile} {
-    margin: 50px 0;
-  }
-`;
-
 const LandingScreen = () => (
   <Container>
     <Newsfeed>
-      {Array.from({ length: 5 }).map((item, index) => (
-        <NewsfeedItem key={index.toString()}>
-          <PostCard />
-        </NewsfeedItem>
-      ))}
+      <PostsList />
     </Newsfeed>
   </Container>
 );
