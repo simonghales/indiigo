@@ -89,6 +89,9 @@ const Preview = styled('div')`
   background: #f2f1fb;
   border-radius: 5px;
   min-height: 340px;
+  background-image: url('https://pbs.twimg.com/tweet_video_thumb/DmDqCNqUwAAo764?format=jpg&name=900x900');
+  background-size: cover;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.075);
 
   ${BREAKPOINTS.mobile} {
     height: 50vw;

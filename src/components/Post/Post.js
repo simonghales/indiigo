@@ -38,7 +38,9 @@ const Post = () => (
       <Heading>Post title goes here</Heading>
     </header>
     <section>
-      <LargeImage />
+      <div>
+        <video src="https://video.twimg.com/tweet_video/DmDqCNqUwAAo764.mp4" loop autoPlay muted />
+      </div>
       <div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, quos, voluptatem!

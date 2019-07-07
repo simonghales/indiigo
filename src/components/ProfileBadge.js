@@ -38,6 +38,8 @@ const Thumbnail = styled('div')`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-image: url('https://pbs.twimg.com/profile_images/715135755228692480/6aPPjwtK_400x400.jpg');
+  background-size: cover;
 
   ${BREAKPOINTS.mobile} {
     width: 40px;
