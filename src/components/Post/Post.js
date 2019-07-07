@@ -39,7 +39,14 @@ const Post = () => (
     </header>
     <section>
       <div>
-        <video src="https://video.twimg.com/tweet_video/DmDqCNqUwAAo764.mp4" loop autoPlay muted />
+        <video
+          src="https://video.twimg.com/tweet_video/DmDqCNqUwAAo764.mp4"
+          width={688}
+          height={392}
+          loop
+          autoPlay
+          muted
+        />
       </div>
       <div>
         <p>
