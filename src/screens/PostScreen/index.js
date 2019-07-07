@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useLastLocation } from 'react-router-last-location';
 import styled from 'react-emotion';
 import { __RouterContext } from 'react-router-dom';
+import { css } from 'emotion';
 import { gridLayoutCss, maxWidthLayoutCss } from '../../styles/layout';
 import ProfileBadge from '../../components/ProfileBadge';
 import Post from '../../components/Post/Post';
@@ -13,28 +14,27 @@ import { BREAKPOINTS } from '../../styles/responsive';
 
 const Wrapper = styled('div')`
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
 
-  ${BREAKPOINTS.desktop} {
-    &.fade-exit,
-    &.fade-enter {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.001);
-      z-index: 500;
-    }
+  &.fade-exit,
+  &.fade-enter {
+    background: rgba(255, 255, 255, 0.001);
+    z-index: 500;
+  }
 
-    &.fade-exit {
-      pointer-events: none;
-    }
+  &.fade-exit {
+    pointer-events: none;
+  }
 
-    &.fade-exit.fade-exit-active,
-    &.fade-enter.fade-enter-active {
-      background: rgba(255, 255, 255, 0);
-      transition: background 500ms ease-in;
-    }
+  &.fade-exit.fade-exit-active,
+  &.fade-enter.fade-enter-active {
+    background: rgba(255, 255, 255, 0);
+    transition: background 500ms ease-in;
   }
 `;
 
@@ -45,10 +45,38 @@ const Container = styled('div')`
   }
 `;
 
+const exitTransitionCss = css`
+  .fade-exit & {
+    opacity: 1;
+  }
+
+  .fade-exit.fade-exit-active & {
+    opacity: 0;
+    transition: all 200ms ease;
+  }
+`;
+
+const transitionsCss = css`
+  .fade-enter & {
+    opacity: 0;
+  }
+
+  .fade-enter.fade-enter-active & {
+    opacity: 1;
+    transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
+  }
+
+  ${exitTransitionCss};
+`;
+
 const LeftAside = styled('div')`
   ${BREAKPOINTS.desktop} {
     grid-column: span 3;
     padding-right: 30px;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    ${transitionsCss};
   }
 
   ${BREAKPOINTS.desktop} {
@@ -77,15 +105,16 @@ const LeftAside = styled('div')`
 `;
 
 const Main = styled('main')`
+  position: relative;
   ${BREAKPOINTS.desktop} {
     grid-column: span 9;
     min-height: 100vh;
-    position: relative;
     z-index: 200;
   }
 
   ${BREAKPOINTS.mobile} {
     background-color: #ffffff;
+    ${exitTransitionCss};
   }
 `;
 
@@ -94,11 +123,19 @@ const MainBackground = styled('div')`
   left: -30px;
   top: 0;
   bottom: 0;
-  width: calc(100% + 30px + ((100vw - 1290px) / 2));
-
-  ${BREAKPOINTS.mobile} {
-    display: none;
+  
+  ${BREAKPOINTS.desktop} {
+    width: calc(100% + 30px + ((100vw - 1290px) / 2));
   }
+  
+  ${BREAKPOINTS.mobile} {
+    left: 0;
+    right: 0;
+  }
+
+  // ${BREAKPOINTS.mobile} {
+  //   display: none;
+  // }
 
   &::before {
     content: '';
@@ -108,17 +145,17 @@ const MainBackground = styled('div')`
     bottom: 0;
     right: 0;
     background-color: #ffffff;
-    ${BREAKPOINTS.desktop} {
-      .fade-enter & {
-        opacity: 0;
-      }
 
-      .fade-enter.fade-enter-active & {
-        opacity: 1;
-        transition: opacity 150ms ease 400ms;
-      }
+    .fade-enter & {
+      opacity: 0;
+    }
+
+    .fade-enter.fade-enter-active & {
+      opacity: 1;
+      transition: opacity 150ms ease 400ms;
     }
   }
+
   ${BREAKPOINTS.desktop} {
     .fade-exit & {
       opacity: 1;
@@ -135,6 +172,11 @@ const MainBackground = styled('div')`
 
 const MainContent = styled('div')`
   position: relative;
+
+  ${BREAKPOINTS.mobile} {
+    ${transitionsCss};
+  }
+
   ${BREAKPOINTS.desktop} {
     .fade-enter & {
       opacity: 0;

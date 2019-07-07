@@ -12,26 +12,28 @@ const Container = styled('div')`
     ${maxWidthLayoutCss};
   }
 
-  ${BREAKPOINTS.desktop} {
-    &.fade-exit {
-      opacity: 1;
-      transition: opacity 200ms 50ms ease;
-      pointer-events: none;
-    }
+  &.fade-exit {
+    opacity: 1;
+    pointer-events: none;
+  }
 
-    &.fade-exit.fade-exit-active {
-      opacity: 0;
-    }
+  &.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 200ms 50ms ease;
 
-    &.fade-enter {
-      opacity: 0;
-      pointer-events: none;
+    ${BREAKPOINTS.mobile} {
+      transition-delay: 0ms;
     }
+  }
 
-    &.fade-enter.fade-enter-active {
-      transition: all 400ms 300ms ease;
-      opacity: 1;
-    }
+  &.fade-enter {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.fade-enter.fade-enter-active {
+    transition: all 400ms 300ms ease;
+    opacity: 1;
   }
 `;
 

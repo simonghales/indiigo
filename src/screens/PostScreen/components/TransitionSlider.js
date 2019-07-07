@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import { animated, useSpring } from 'react-spring';
 import { css } from 'emotion';
+import { BREAKPOINTS } from '../../../styles/responsive';
 
 const blobClass = css`
   position: absolute;
@@ -15,6 +16,20 @@ const blobClass = css`
 
   .fade-enter & {
     visibility: visible;
+  }
+`;
+
+const desktopClass = css`
+  ${blobClass};
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
+`;
+
+const mobileClass = css`
+  ${blobClass};
+  ${BREAKPOINTS.desktop} {
+    display: none;
   }
 `;
 
@@ -34,7 +49,23 @@ const TransitionSlider = () => {
       transform: 'translate3d(0, 0, 0)',
     },
   });
-  return <animated.div className={blobClass} style={props} />;
+  const mobile = useSpring({
+    config,
+    from: {
+      height: '0%',
+      transform: 'translate3d(0, -50vh, 0)',
+    },
+    to: {
+      height: '100%',
+      transform: 'translate3d(0, 0, 0)',
+    },
+  });
+  return (
+    <React.Fragment>
+      <animated.div className={desktopClass} style={props} />
+      <animated.div className={mobileClass} style={mobile} />
+    </React.Fragment>
+  );
 };
 
 export default TransitionSlider;

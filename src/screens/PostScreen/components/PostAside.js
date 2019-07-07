@@ -21,7 +21,7 @@ const Container = styled('div')`
   }
 
   ${BREAKPOINTS.mobile} {
-    margin: 15px 0;
+    margin: 15px 0 8px 0;
   }
 `;
 
