@@ -12,15 +12,20 @@ import SiteLogo from '../../components/SiteLogo';
 import PostAside from './components/PostAside';
 import { BREAKPOINTS } from '../../styles/responsive';
 import PostComments from './components/PostComments';
+import {
+  routePreviousTransitionEnabledState,
+  routeTransitionDisabledState,
+} from '../../styles/shared/transitions';
 
 const Wrapper = styled('div')`
   overflow: hidden;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   overflow-y: auto;
+  overflow-scrolling: touch;
 
   &.fade-exit,
   &.fade-enter {
@@ -33,6 +38,10 @@ const Wrapper = styled('div')`
 
   &.fade-exit {
     pointer-events: none;
+
+    ${routeTransitionDisabledState} {
+      display: none;
+    }
   }
 
   ${BREAKPOINTS.desktop} {
@@ -44,19 +53,25 @@ const Wrapper = styled('div')`
   }
 
   ${BREAKPOINTS.mobile} {
-    &.fade-exit.fade-exit-active,
     &.fade-enter {
-      transform: translateX(100vw);
+      ${routePreviousTransitionEnabledState} {
+        transform: translateX(100vw);
+      }
+    }
+    &.fade-enter.fade-enter-active {
+      ${routePreviousTransitionEnabledState} {
+        transform: translateX(0);
+        transition: transform 450ms ease;
+      }
     }
 
-    &.fade-enter.fade-enter-active,
     &.fade-exit {
       transform: translateX(0);
     }
 
-    &.fade-enter.fade-enter-active,
     &.fade-exit.fade-exit-active {
       transition: transform 450ms ease;
+      transform: translateX(100vw);
     }
   }
 `;
@@ -73,34 +88,6 @@ const Container = styled('div')`
   }
 `;
 
-const exitTransitionCss = css`
-  .fade-exit & {
-    opacity: 1;
-  }
-
-  .fade-exit.fade-exit-active & {
-    opacity: 0;
-    transition: all 200ms ease;
-
-    ${BREAKPOINTS.mobile} {
-      transition: all 500ms ease;
-    }
-  }
-`;
-
-const transitionsCss = css`
-  .fade-enter & {
-    opacity: 0;
-  }
-
-  .fade-enter.fade-enter-active & {
-    opacity: 1;
-    transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
-  }
-
-  ${exitTransitionCss};
-`;
-
 const LeftAside = styled('div')`
   ${BREAKPOINTS.desktop} {
     grid-column: span 3;
@@ -112,14 +99,18 @@ const LeftAside = styled('div')`
 
   ${BREAKPOINTS.desktop} {
     .fade-enter & {
-      opacity: 0;
-      transform: translateX(-15px);
+      ${routePreviousTransitionEnabledState} {
+        opacity: 0;
+        transform: translateX(-15px);
+      }
     }
 
     .fade-enter.fade-enter-active & {
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
+      ${routePreviousTransitionEnabledState} {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 300ms ease 400ms, transform 300ms ease 400ms;
+      }
     }
 
     .fade-exit & {
@@ -174,12 +165,16 @@ const MainBackground = styled('div')`
     background-color: #ffffff;
 
     .fade-enter & {
-      opacity: 0;
+      ${routePreviousTransitionEnabledState} {
+        opacity: 0;
+      }
     }
 
     .fade-enter.fade-enter-active & {
-      opacity: 1;
-      transition: opacity 150ms ease 400ms;
+      ${routePreviousTransitionEnabledState} {
+        opacity: 1;
+        transition: opacity 150ms ease 400ms;
+      }
     }
   }
 
@@ -202,12 +197,16 @@ const MainContent = styled('div')`
 
   ${BREAKPOINTS.desktop} {
     .fade-enter & {
-      opacity: 0;
+      ${routePreviousTransitionEnabledState} {
+        opacity: 0;
+      }
     }
 
     .fade-enter.fade-enter-active & {
-      opacity: 1;
-      transition: opacity 350ms ease 250ms;
+      ${routePreviousTransitionEnabledState} {
+        opacity: 1;
+        transition: opacity 350ms ease 250ms;
+      }
     }
 
     .fade-exit & {

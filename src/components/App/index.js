@@ -3,26 +3,49 @@ import React, { useContext } from 'react';
 import { useTransition, animated } from 'react-spring';
 import { __RouterContext, BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { LastLocationProvider } from 'react-router-last-location';
+import { LastLocationProvider, useLastLocation } from 'react-router-last-location';
+import { cx } from 'emotion';
 import LandingScreen from '../../screens/LandingScreen';
 import PostScreen from '../../screens/PostScreen';
+import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen';
+import {
+  routePreviousTransitionEnabled,
+  routeTransitionDisabled,
+  routeTransitionEnabled,
+} from '../../styles/shared/transitions';
+
+const animateRoute = (location): boolean => {
+  return location.pathname === '/' || location.pathname === '/post';
+};
 
 const Routes = () => {
-  const { location } = useContext(__RouterContext);
-  const validRoute = location.pathname === '/' || location.pathname === '/post';
+  const lastLocation = useLastLocation();
+  const stuff = useContext(__RouterContext);
+  const { location } = stuff;
+  const validPreviousRoute = lastLocation && animateRoute(lastLocation);
+  const validRoute = animateRoute(location);
   return (
-    <TransitionGroup className="transition-group">
-      <CSSTransition
-        key={location.pathname}
-        classNames={validRoute ? 'fade' : ''}
-        timeout={validRoute ? 700 : 0}
-      >
-        <Switch location={location}>
-          <Route exact path="/" component={LandingScreen} />
-          <Route exact path="/post" component={PostScreen} />
-        </Switch>
-      </CSSTransition>
-    </TransitionGroup>
+    <div
+      className={cx({
+        [routePreviousTransitionEnabled]: validPreviousRoute,
+        [routeTransitionEnabled]: validRoute,
+        [routeTransitionDisabled]: !validRoute,
+      })}
+    >
+      <TransitionGroup className="transition-group">
+        <CSSTransition
+          key={location.pathname}
+          classNames={validRoute ? 'fade' : ''}
+          timeout={validRoute ? 700 : 0}
+        >
+          <Switch location={location}>
+            <Route exact path="/" component={LandingScreen} />
+            <Route exact path="/post" component={PostScreen} />
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+      <Route exact path="/profile" component={ProfileScreen} />
+    </div>
   );
   // const transitions = useTransition(location, loc => loc.pathname, {
   //   from: { opacity: 0, transform: 'translate3d(100%,0,0)' },

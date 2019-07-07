@@ -28,4 +28,9 @@ export default injectGlobal`
         font-weight: 900;
     }
     
+    a {
+    color: inherit;
+    text-decoration: none;
+    }
+    
 `;

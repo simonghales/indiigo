@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import { Link } from 'react-router-dom';
 import { roundBackShadowCss } from '../styles/shared/fills';
 import { BREAKPOINTS } from '../styles/responsive';
 
@@ -19,7 +20,7 @@ const Container = styled('div')`
 
 const ThumbnailWrapper = styled('div')`
   position: relative;
-  margin-right: 10px;
+  margin-right: 8px;
 
   ${BREAKPOINTS.mobile} {
     margin-right: 5px;
@@ -74,11 +75,17 @@ const Handle = styled('div')`
 const ProfileBadge = () => (
   <Container>
     <ThumbnailWrapper>
-      <Thumbnail />
+      <Link to="/profile">
+        <Thumbnail />
+      </Link>
     </ThumbnailWrapper>
     <Info>
-      <Name>Simon Hales</Name>
-      <Handle>@simonghales</Handle>
+      <Link to="/profile">
+        <Name>Simon Hales</Name>
+      </Link>
+      <Link to="/profile">
+        <Handle>@simonghales</Handle>
+      </Link>
     </Info>
   </Container>
 );

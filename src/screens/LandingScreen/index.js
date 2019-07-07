@@ -4,6 +4,11 @@ import styled from 'react-emotion';
 import { gridLayoutCss, maxWidthLayoutCss, mobileSidePadding } from '../../styles/layout';
 import PostCard from '../../components/PostCard';
 import { BREAKPOINTS } from '../../styles/responsive';
+import {
+  routePreviousTransitionEnabledState,
+  routeTransitionDisabledState,
+  routeTransitionEnabledState,
+} from '../../styles/shared/transitions';
 
 const Container = styled('div')`
   ${mobileSidePadding};
@@ -13,6 +18,10 @@ const Container = styled('div')`
   }
 
   &.fade-exit {
+    ${routeTransitionDisabledState} {
+      display: none;
+    }
+
     opacity: 1;
     pointer-events: none;
 
@@ -21,31 +30,37 @@ const Container = styled('div')`
     }
   }
 
-  &.fade-exit.fade-exit-active {
-    opacity: 0;
-    transition: opacity 200ms 50ms ease;
+  ${routeTransitionEnabledState} {
+    &.fade-exit.fade-exit-active {
+      opacity: 0;
+      transition: opacity 200ms 50ms ease;
 
-    ${BREAKPOINTS.mobile} {
-      transform: translateX(-100vw);
-      transition: all 450ms ease;
+      ${BREAKPOINTS.mobile} {
+        transform: translateX(-100vw);
+        transition: all 450ms ease;
+      }
     }
   }
 
   &.fade-enter {
-    opacity: 0;
-    pointer-events: none;
+    ${routePreviousTransitionEnabledState} {
+      opacity: 0;
+      pointer-events: none;
 
-    ${BREAKPOINTS.mobile} {
-      transform: translateX(-100vw);
+      ${BREAKPOINTS.mobile} {
+        transform: translateX(-100vw);
+      }
     }
   }
 
   &.fade-enter.fade-enter-active {
-    transition: all 400ms 300ms ease;
-    opacity: 1;
-    ${BREAKPOINTS.mobile} {
-      transform: translateX(0);
-      transition: all 500ms ease;
+    ${routePreviousTransitionEnabledState} {
+      transition: all 400ms 300ms ease;
+      opacity: 1;
+      ${BREAKPOINTS.mobile} {
+        transform: translateX(0);
+        transition: all 500ms ease;
+      }
     }
   }
 `;
