@@ -15,3 +15,10 @@ export const largeHeadingCss = css`
   color: #0c2340;
   letter-spacing: 0.33px;
 `;
+
+export const smallBoldCss = css`
+  font-weight: 700;
+  font-size: 11.5px;
+  color: #a0abff;
+  letter-spacing: 0.16px;
+`;

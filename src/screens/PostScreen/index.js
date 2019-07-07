@@ -4,13 +4,14 @@ import { useLastLocation } from 'react-router-last-location';
 import styled from 'react-emotion';
 import { __RouterContext } from 'react-router-dom';
 import { css } from 'emotion';
-import { gridLayoutCss, maxWidthLayoutCss } from '../../styles/layout';
+import { gridLayoutCss, maxWidthLayoutCss, mobileSidePadding } from '../../styles/layout';
 import ProfileBadge from '../../components/ProfileBadge';
 import Post from '../../components/Post/Post';
 import TransitionSlider from './components/TransitionSlider';
 import SiteLogo from '../../components/SiteLogo';
 import PostAside from './components/PostAside';
 import { BREAKPOINTS } from '../../styles/responsive';
+import PostComments from './components/PostComments';
 
 const Wrapper = styled('div')`
   overflow: hidden;
@@ -65,6 +66,11 @@ const Container = styled('div')`
     ${gridLayoutCss};
     ${maxWidthLayoutCss};
   }
+
+  ${BREAKPOINTS.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const exitTransitionCss = css`
@@ -99,6 +105,9 @@ const LeftAside = styled('div')`
   ${BREAKPOINTS.desktop} {
     grid-column: span 3;
     padding-right: 30px;
+  }
+
+  ${BREAKPOINTS.mobile} {
   }
 
   ${BREAKPOINTS.desktop} {
@@ -212,6 +221,14 @@ const MainContent = styled('div')`
   }
 `;
 
+const commentsClass = css`
+  ${mobileSidePadding};
+  padding-bottom: 100px;
+  ${BREAKPOINTS.desktop} {
+    display: none;
+  }
+`;
+
 const PostScreen = () => {
   const lastLocation = useLastLocation();
   const animate = lastLocation && lastLocation.pathname === '/';
@@ -228,6 +245,7 @@ const PostScreen = () => {
           </MainContent>
         </Main>
       </Container>
+      <PostComments className={commentsClass} />
     </Wrapper>
   );
 };

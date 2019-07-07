@@ -7,13 +7,13 @@ import SiteLogo from '../../../components/SiteLogo';
 import ProfileBadge from '../../../components/ProfileBadge';
 import ReturnButton from './ReturnButton';
 import { CommentsButton, LikeButton } from '../../../components/RoundButton';
-import PostDetails from '../../../components/PostDetails';
+import PostInfo, { PostDetails } from '../../../components/PostInfo';
 import PostComments from './PostComments';
 import { BREAKPOINTS } from '../../../styles/responsive';
 import { mobileSidePadding } from '../../../styles/layout';
+import { smallBoldCss } from '../../../styles/typography';
 
 const Container = styled('div')`
-  ${mobileSidePadding};
   position: relative;
 
   ${BREAKPOINTS.desktop} {
@@ -21,7 +21,8 @@ const Container = styled('div')`
   }
 
   ${BREAKPOINTS.mobile} {
-    margin: 15px 0 8px 0;
+    padding: 0 18px;
+    margin: 17px 0 10px 0;
   }
 `;
 
@@ -91,10 +92,7 @@ const LikesContainer = styled('div')`
   span {
     display: inline-block;
     margin-right: 8px;
-    font-weight: 700;
-    font-size: 11.5px;
-    color: #a0abff;
-    letter-spacing: 0.16px;
+    ${smallBoldCss};
   }
 `;
 
@@ -110,10 +108,7 @@ const CommentsContainer = styled('div')`
   span {
     display: inline-block;
     margin-left: 8px;
-    font-weight: 700;
-    font-size: 11.5px;
-    color: #a0abff;
-    letter-spacing: 0.16px;
+    ${smallBoldCss};
   }
 `;
 
@@ -122,6 +117,67 @@ const commentsClass = css`
     display: none;
   }
 `;
+
+const MobileOptionsWrapper = styled('div')`
+  ${BREAKPOINTS.mobile} {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+`;
+
+const MobileOptions = styled('div')`
+  ${BREAKPOINTS.desktop} {
+    display: none;
+  }
+  display: flex;
+`;
+
+const MobileOption = styled('div')`
+  text-align: center;
+  &:not(:last-child) {
+    margin-right: 6px;
+  }
+`;
+
+const OptionLabel = styled('div')`
+  ${smallBoldCss};
+  margin-top: 3px;
+`;
+
+const mobileOnlyClass = css`
+  ${BREAKPOINTS.desktop} {
+    display: none;
+  }
+`;
+
+const postInfoClass = css`
+  ${BREAKPOINTS.mobile} {
+    margin-top: 6px;
+  }
+`;
+
+export const PostPreview = ({ truncate = false, ...otherProps }) => (
+  <div {...otherProps}>
+    <MobileOptionsWrapper>
+      <div>
+        <ProfileBadge />
+        <PostDetails className={mobileOnlyClass} />
+      </div>
+      <MobileOptions>
+        <MobileOption>
+          <LikeButton />
+          <OptionLabel>874</OptionLabel>
+        </MobileOption>
+        <MobileOption>
+          <CommentsButton />
+          <OptionLabel>4</OptionLabel>
+        </MobileOption>
+      </MobileOptions>
+    </MobileOptionsWrapper>
+    <PostInfo className={postInfoClass} truncate={truncate} />
+  </div>
+);
 
 const PostAside = () => (
   <Container>
@@ -137,8 +193,7 @@ const PostAside = () => (
           <span>874</span>
           <LikeButton />
         </LikesContainer>
-        <ProfileBadge />
-        <PostDetails />
+        <PostPreview />
         <CommentsContainer>
           <CommentsButton />
           <span>4 comments</span>

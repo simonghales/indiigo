@@ -11,6 +11,10 @@ const Container = styled('div')`
   ${BREAKPOINTS.desktop} {
     margin-left: -3px;
   }
+
+  ${BREAKPOINTS.mobile} {
+    margin-left: -2px;
+  }
 `;
 
 const ThumbnailWrapper = styled('div')`

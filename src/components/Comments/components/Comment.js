@@ -3,6 +3,13 @@ import React from 'react';
 import styled from 'react-emotion';
 import { css } from 'emotion';
 import CircleButton from '../../CircleButton';
+import { BREAKPOINTS } from '../../../styles/responsive';
+
+const Container = styled('div')`
+  ${BREAKPOINTS.mobile} {
+    padding-left: 12px;
+  }
+`;
 
 const Header = styled('header')`
   position: relative;
@@ -14,6 +21,10 @@ const voteClass = css`
   top: -2px;
   right: 100%;
   margin-right: 2px;
+
+  ${BREAKPOINTS.mobile} {
+    margin-right: 1px;
+  }
 `;
 
 const HeaderText = styled('span')`
@@ -52,7 +63,7 @@ const Options = styled('div')`
 `;
 
 const Comment = () => (
-  <div>
+  <Container>
     <Header>
       <CircleButton size={18} className={voteClass}>
         <svg width="8" height="8" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +92,7 @@ const Comment = () => (
     <Options>
       <span>reply</span>
     </Options>
-  </div>
+  </Container>
 );
 
 export default Comment;

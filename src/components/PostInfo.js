@@ -2,6 +2,7 @@
 import React from 'react';
 import TextTruncate from 'react-text-truncate';
 import styled from 'react-emotion';
+import { css } from 'emotion';
 import { detailsTextCss } from '../styles/typography';
 import { BREAKPOINTS } from '../styles/responsive';
 
@@ -17,13 +18,15 @@ const Info = styled('section')`
   }
 `;
 
+const hideMobileClass = css`
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
+`;
+
 const Details = styled('div')`
   ${detailsTextCss};
   margin-top: 4px;
-
-  ${BREAKPOINTS.mobile} {
-    margin-top: 2px;
-  }
 
   span {
     &:not(:last-child) {
@@ -36,12 +39,19 @@ const Details = styled('div')`
   }
 `;
 
+export const PostDetails = ({ ...otherProps }) => (
+  <Details {...otherProps}>
+    <span>posted today</span>
+    <span>options</span>
+  </Details>
+);
+
 type Props = {
   truncate?: boolean,
 };
 
-const PostDetails = ({ truncate }: Props) => (
-  <Info>
+const PostInfo = ({ truncate, ...otherProps }: Props) => (
+  <Info {...otherProps}>
     <p>
       {truncate ? (
         <TextTruncate
@@ -53,11 +63,8 @@ const PostDetails = ({ truncate }: Props) => (
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam.'
       )}
     </p>
-    <Details>
-      <span>posted today</span>
-      <span>options</span>
-    </Details>
+    <PostDetails className={hideMobileClass} />
   </Info>
 );
 
-export default PostDetails;
+export default PostInfo;

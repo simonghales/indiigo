@@ -20,6 +20,9 @@ const Container = styled('div')`
 
 const Heading = styled('h1')`
   ${largeHeadingCss};
+
+  ${BREAKPOINTS.mobile} {
+  }
 `;
 
 const LargeImage = styled('div')`

@@ -11,8 +11,9 @@ import QuotedComments from './components/QuotedComments';
 import { detailsTextCss } from '../../styles/typography';
 import RoundButton, { CommentsButton, LikeButton, RoundIconButton } from '../RoundButton';
 import { vibrantColor } from '../../styles/colors';
-import PostDetails from '../PostDetails';
+import PostInfo from '../PostInfo';
 import { BREAKPOINTS } from '../../styles/responsive';
+import { PostPreview } from '../../screens/PostScreen/components/PostAside';
 
 const Container = styled('article')`
   ${BREAKPOINTS.desktop} {
@@ -108,7 +109,7 @@ const Aside = styled('aside')`
 const ProfileWrapper = styled('div')`
   margin-top: 22px;
   ${BREAKPOINTS.mobile} {
-    margin-top: 10px;
+    display: none;
   }
 `;
 
@@ -162,6 +163,13 @@ const PostOptions = ({ ...otherProps }) => (
   </Options>
 );
 
+const mobilePostPreview = css`
+  margin-top: 10px;
+  ${BREAKPOINTS.desktop} {
+    display: none;
+  }
+`;
+
 const PostCard = () => (
   <Container>
     <Aside>
@@ -170,10 +178,11 @@ const PostCard = () => (
           <ProfileBadge />
           <PostOptions className={mobileOptionsClass} />
         </ProfileBadgeWrapper>
-        <PostDetails truncate />
+        <PostInfo truncate />
         <QuotedComments className={commentsClass} />
         <PostOptions className={desktopOptionsClass} />
       </ProfileWrapper>
+      <PostPreview className={mobilePostPreview} truncate />
     </Aside>
     <MainCard>
       <Content>
