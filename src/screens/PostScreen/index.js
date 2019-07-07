@@ -29,12 +29,23 @@ const Wrapper = styled('div')`
 
   &.fade-exit {
     pointer-events: none;
+
+    ${BREAKPOINTS.mobile} {
+      transform: translateX(0);
+    }
   }
 
   &.fade-exit.fade-exit-active,
   &.fade-enter.fade-enter-active {
     background: rgba(255, 255, 255, 0);
     transition: background 500ms ease-in;
+  }
+
+  &.fade-exit.fade-exit-active {
+    ${BREAKPOINTS.mobile} {
+      transform: translateX(100vw);
+      transition: background 500ms ease-in, transform 450ms ease;
+    }
   }
 `;
 
@@ -53,6 +64,10 @@ const exitTransitionCss = css`
   .fade-exit.fade-exit-active & {
     opacity: 0;
     transition: all 200ms ease;
+
+    ${BREAKPOINTS.mobile} {
+      transition: all 500ms ease;
+    }
   }
 `;
 

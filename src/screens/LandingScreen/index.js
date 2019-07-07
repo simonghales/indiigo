@@ -29,11 +29,19 @@ const Container = styled('div')`
   &.fade-enter {
     opacity: 0;
     pointer-events: none;
+
+    ${BREAKPOINTS.mobile} {
+      transform: translateX(-100vw);
+    }
   }
 
   &.fade-enter.fade-enter-active {
     transition: all 400ms 300ms ease;
     opacity: 1;
+    ${BREAKPOINTS.mobile} {
+      transform: translateX(0);
+      transition: all 500ms ease;
+    }
   }
 `;
 
