@@ -3,8 +3,18 @@ import React from 'react';
 import styled from 'react-emotion';
 import PostsList from '../../components/PostsList';
 import { BREAKPOINTS } from '../../styles/responsive';
-import { gridLayoutCss, maxWidthLayoutCss } from '../../styles/layout';
+import { gridLayoutCss, maxWidthLayoutCss, mobileSidePadding } from '../../styles/layout';
 import ProfileIntro from './components/ProfileIntro';
+
+const Wrapper = styled('div')`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-scrolling: touch;
+`;
 
 const Container = styled('div')`
   ${BREAKPOINTS.desktop} {
@@ -14,18 +24,19 @@ const Container = styled('div')`
 `;
 
 const UsersFeed = styled('div')`
+  ${mobileSidePadding};
   grid-column: 2 / span 8;
 `;
 
 const ProfileScreen = () => (
-  <div>
+  <Wrapper>
     <ProfileIntro />
     <Container>
       <UsersFeed>
         <PostsList />
       </UsersFeed>
     </Container>
-  </div>
+  </Wrapper>
 );
 
 export default ProfileScreen;

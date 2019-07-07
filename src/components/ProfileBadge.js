@@ -4,6 +4,7 @@ import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
 import { roundBackShadowCss } from '../styles/shared/fills';
 import { BREAKPOINTS } from '../styles/responsive';
+import { vibrantColor } from '../styles/colors';
 
 const Container = styled('div')`
   display: flex;
@@ -60,6 +61,12 @@ const Name = styled('div')`
   ${BREAKPOINTS.mobile} {
     font-size: 12px;
   }
+
+  a {
+    &:hover {
+      color: ${vibrantColor};
+    }
+  }
 `;
 
 const Handle = styled('div')`
@@ -69,6 +76,12 @@ const Handle = styled('div')`
 
   ${BREAKPOINTS.mobile} {
     font-size: 12px;
+  }
+
+  a {
+    &:hover {
+      color: ${vibrantColor};
+    }
   }
 `;
 
@@ -80,12 +93,12 @@ const ProfileBadge = () => (
       </Link>
     </ThumbnailWrapper>
     <Info>
-      <Link to="/profile">
-        <Name>Simon Hales</Name>
-      </Link>
-      <Link to="/profile">
-        <Handle>@simonghales</Handle>
-      </Link>
+      <Name>
+        <Link to="/profile">Simon Hales</Link>
+      </Name>
+      <Handle>
+        <Link to="/profile">@simonghales</Link>
+      </Handle>
     </Info>
   </Container>
 );
