@@ -64,6 +64,10 @@ const CardHeader = styled('header')`
   padding: 5px 10px 15px 10px;
   display: flex;
   align-items: flex-end;
+
+  ${BREAKPOINTS.mobile} {
+    padding-bottom: 13px;
+  }
 `;
 
 const CardPostTitle = styled('h3')`
@@ -88,6 +92,7 @@ const Preview = styled('div')`
   min-height: 340px;
   background-image: url('https://pbs.twimg.com/tweet_video_thumb/DmDqCNqUwAAo764?format=jpg&name=900x900');
   background-size: cover;
+  background-position: center;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.075);
 
   ${BREAKPOINTS.mobile} {

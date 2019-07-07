@@ -7,7 +7,7 @@ import { BREAKPOINTS } from '../../../styles/responsive';
 
 const Container = styled('div')`
   ${BREAKPOINTS.mobile} {
-    padding-left: 12px;
+    padding-left: 14px;
   }
 `;
 

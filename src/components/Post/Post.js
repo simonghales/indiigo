@@ -32,13 +32,22 @@ const LargeImage = styled('div')`
   margin: 30px 0;
 `;
 
+const VideoWrapper = styled('div')`
+  ${BREAKPOINTS.mobile} {
+    video {
+      width: 100%;
+      height: auto;
+    }
+  }
+`;
+
 const Post = () => (
   <Container>
     <header>
       <Heading>Post title goes here</Heading>
     </header>
     <section>
-      <div>
+      <VideoWrapper>
         <video
           src="https://video.twimg.com/tweet_video/DmDqCNqUwAAo764.mp4"
           width={688}
@@ -47,7 +56,7 @@ const Post = () => (
           autoPlay
           muted
         />
-      </div>
+      </VideoWrapper>
       <div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, quos, voluptatem!

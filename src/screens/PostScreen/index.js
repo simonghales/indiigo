@@ -16,8 +16,10 @@ import {
   routePreviousTransitionEnabledState,
   routeTransitionDisabledState,
 } from '../../styles/shared/transitions';
+import { siteBgColor } from '../../styles/colors';
 
 const Wrapper = styled('div')`
+  background-color: ${siteBgColor};
   overflow: hidden;
   position: fixed;
   top: 0;

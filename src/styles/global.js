@@ -2,6 +2,7 @@
 
 import { injectGlobal } from 'emotion';
 import reset from './reset';
+import { siteBgColor } from './colors';
 
 export default injectGlobal`
     ${reset};
@@ -11,7 +12,7 @@ export default injectGlobal`
     }
     
     body {
-        background-color: #F8F8F6;
+        background-color: ${siteBgColor};
         font-size: 13px;
         line-height: 1.38;
         color: #3F4660;

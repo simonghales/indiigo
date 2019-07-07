@@ -5,8 +5,10 @@ import PostsList from '../../components/PostsList';
 import { BREAKPOINTS } from '../../styles/responsive';
 import { gridLayoutCss, maxWidthLayoutCss, mobileSidePadding } from '../../styles/layout';
 import ProfileIntro from './components/ProfileIntro';
+import { siteBgColor } from '../../styles/colors';
 
 const Wrapper = styled('div')`
+  background-color: ${siteBgColor};
   position: fixed;
   top: 0;
   left: 0;
