@@ -15,6 +15,10 @@ const Container = styled('div')`
   &.fade-exit {
     opacity: 1;
     pointer-events: none;
+
+    ${BREAKPOINTS.mobile} {
+      transform: translateX(0);
+    }
   }
 
   &.fade-exit.fade-exit-active {
@@ -22,7 +26,8 @@ const Container = styled('div')`
     transition: opacity 200ms 50ms ease;
 
     ${BREAKPOINTS.mobile} {
-      transition-delay: 0ms;
+      transform: translateX(-100vw);
+      transition: all 450ms ease;
     }
   }
 

@@ -23,28 +23,39 @@ const Wrapper = styled('div')`
 
   &.fade-exit,
   &.fade-enter {
-    background: rgba(255, 255, 255, 0.001);
     z-index: 500;
+
+    ${BREAKPOINTS.desktop} {
+      background: rgba(255, 255, 255, 0.001);
+    }
   }
 
   &.fade-exit {
     pointer-events: none;
+  }
 
-    ${BREAKPOINTS.mobile} {
-      transform: translateX(0);
+  ${BREAKPOINTS.desktop} {
+    &.fade-exit.fade-exit-active,
+    &.fade-enter.fade-enter-active {
+      background: rgba(255, 255, 255, 0);
+      transition: background 500ms ease-in;
     }
   }
 
-  &.fade-exit.fade-exit-active,
-  &.fade-enter.fade-enter-active {
-    background: rgba(255, 255, 255, 0);
-    transition: background 500ms ease-in;
-  }
-
-  &.fade-exit.fade-exit-active {
-    ${BREAKPOINTS.mobile} {
+  ${BREAKPOINTS.mobile} {
+    &.fade-exit.fade-exit-active,
+    &.fade-enter {
       transform: translateX(100vw);
-      transition: background 500ms ease-in, transform 450ms ease;
+    }
+
+    &.fade-enter.fade-enter-active,
+    &.fade-exit {
+      transform: translateX(0);
+    }
+
+    &.fade-enter.fade-enter-active,
+    &.fade-exit.fade-exit-active {
+      transition: transform 450ms ease;
     }
   }
 `;
@@ -90,10 +101,6 @@ const LeftAside = styled('div')`
     padding-right: 30px;
   }
 
-  ${BREAKPOINTS.mobile} {
-    ${transitionsCss};
-  }
-
   ${BREAKPOINTS.desktop} {
     .fade-enter & {
       opacity: 0;
@@ -129,7 +136,6 @@ const Main = styled('main')`
 
   ${BREAKPOINTS.mobile} {
     background-color: #ffffff;
-    ${exitTransitionCss};
   }
 `;
 
@@ -138,19 +144,16 @@ const MainBackground = styled('div')`
   left: -30px;
   top: 0;
   bottom: 0;
-  
+
   ${BREAKPOINTS.desktop} {
     width: calc(100% + 30px + ((100vw - 1290px) / 2));
   }
-  
+
   ${BREAKPOINTS.mobile} {
     left: 0;
     right: 0;
+    display: none;
   }
-
-  // ${BREAKPOINTS.mobile} {
-  //   display: none;
-  // }
 
   &::before {
     content: '';
@@ -187,10 +190,6 @@ const MainBackground = styled('div')`
 
 const MainContent = styled('div')`
   position: relative;
-
-  ${BREAKPOINTS.mobile} {
-    ${transitionsCss};
-  }
 
   ${BREAKPOINTS.desktop} {
     .fade-enter & {

@@ -63,7 +63,6 @@ const TransitionSlider = () => {
   return (
     <React.Fragment>
       <animated.div className={desktopClass} style={props} />
-      <animated.div className={mobileClass} style={mobile} />
     </React.Fragment>
   );
 };
