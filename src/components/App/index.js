@@ -1,5 +1,6 @@
 // @flow
 import React, { useContext } from 'react';
+import { Router, Link } from '@reach/router';
 import { useTransition, animated } from 'react-spring';
 import { __RouterContext, BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -13,6 +14,7 @@ import {
   routeTransitionDisabled,
   routeTransitionEnabled,
 } from '../../styles/shared/transitions';
+import RevisedLandingScreen from '../../screens/RevisedLandingScreen/RevisedLandingScreen';
 
 const animateRoute = (location): boolean => {
   return location.pathname === '/' || location.pathname === '/post';
@@ -74,6 +76,9 @@ const App = () => (
         <Routes />
       </LastLocationProvider>
     </BrowserRouter>
+    <Router>
+      <RevisedLandingScreen path="/revised" />
+    </Router>
   </React.Fragment>
 );
 

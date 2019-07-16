@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconscout/react-unicons": "^0.0.1",
     "@reach/router": "^1.2.1",
     "emotion": "^10.0.9",
     "react": "^16.8.6",
