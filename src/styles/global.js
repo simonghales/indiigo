@@ -30,8 +30,8 @@ export default injectGlobal`
     }
     
     a {
-    color: inherit;
-    text-decoration: none;
+        color: inherit;
+        text-decoration: none;
     }
     
 `;

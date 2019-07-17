@@ -15,6 +15,7 @@ import {
   routeTransitionEnabled,
 } from '../../styles/shared/transitions';
 import RevisedLandingScreen from '../../screens/RevisedLandingScreen/RevisedLandingScreen';
+import RevisedPostScreen from '../../screens/RevisedPostScreen/RevisedPostScreen';
 
 const animateRoute = (location): boolean => {
   return location.pathname === '/' || location.pathname === '/post';
@@ -78,6 +79,7 @@ const App = () => (
     </BrowserRouter>
     <Router>
       <RevisedLandingScreen path="/revised" />
+      <RevisedPostScreen path="/revised/post" />
     </Router>
   </React.Fragment>
 );

@@ -8,6 +8,8 @@ import UilMusic from '@iconscout/react-unicons/icons/uil-music';
 import UilAngleDown from '@iconscout/react-unicons/icons/uil-angle-down';
 import styled from 'react-emotion';
 import { css } from 'emotion';
+import { Link } from '@reach/router';
+import ProfileBadge from '../../../components/revised/ProfileBadge';
 
 const Article = styled('article')`
   display: flex;
@@ -17,39 +19,13 @@ const Aside = styled('aside')`
   width: 190px;
   padding-right: 10px;
   position: relative;
-  padding-bottom: 20px;
+  //padding-bottom: 20px;
   padding-top: 23px;
 `;
 
 const AsideContent = styled('div')`
   //position: sticky;
   //top: 25px;
-`;
-
-const Info = styled('div')`
-  display: flex;
-  align-items: center;
-`;
-
-const Thumbnail = styled('div')`
-  background: #f4f5fc;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 6px;
-`;
-
-const Name = styled('div')`
-  font-weight: 600;
-  font-size: 13px;
-  color: #535262;
-`;
-
-const Handle = styled('div')`
-  font-weight: 600;
-  font-size: 12px;
-  color: #74779c;
-  margin-top: -1px;
 `;
 
 const Description = styled('p')`
@@ -130,6 +106,10 @@ const CardPreview = styled('div')`
   background: #f4f5fc;
   height: 296px;
   border-radius: 3px;
+  background-image: url('https://pbs.twimg.com/tweet_video_thumb/DmDqCNqUwAAo764?format=jpg&name=900x900');
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.075);
 `;
 
 const CardIcons = styled('div')`
@@ -149,17 +129,17 @@ const Icon = styled('div')`
   margin-right: 3px;
 `;
 
+const ProfileWrapper = styled('div')`
+  margin-left: -7px;
+`;
+
 const PostCard = () => (
   <Article>
     <Aside>
       <AsideContent>
-        <Info>
-          <Thumbnail></Thumbnail>
-          <div>
-            <Name>Simon Hales</Name>
-            <Handle>@simonghales</Handle>
-          </div>
-        </Info>
+        <ProfileWrapper>
+          <ProfileBadge />
+        </ProfileWrapper>
         <Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue commodo tortor, non
           laoreet metus fringilla vel.
@@ -191,7 +171,9 @@ const PostCard = () => (
     </Aside>
     <CardWrapper>
       <Card>
-        <CardTitle>indiigo announcement</CardTitle>
+        <CardTitle>
+          <Link to="/revised/post">indiigo announcement</Link>
+        </CardTitle>
         <CardPreview />
         <CardIcons>
           <Icon>

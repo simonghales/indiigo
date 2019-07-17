@@ -4,33 +4,8 @@ import styled from 'react-emotion';
 import UilBars from '@iconscout/react-unicons/icons/uil-bars';
 import { css } from 'emotion';
 import NewsFeed from './components/NewsFeed';
-
-const Container = styled('div')`
-  display: flex;
-`;
-
-const AsideWrapper = styled('div')`
-  min-height: 100vh;
-  width: 230px;
-  background-color: #ffffff;
-  position: relative;
-  border-right: 1px solid #f6f4f7;
-`;
-
-const Aside = styled('aside')`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-`;
-
-const MainContent = styled('section')`
-  flex: 1;
-  min-height: 100vh;
-  background-color: #ffffff;
-  padding-bottom: 100px;
-`;
+import MainLayout from '../../components/MainLayout';
+import Sidebar from '../../components/Sidebar';
 
 const SideNav = styled('nav')`
   padding: 0 30px;
@@ -68,26 +43,10 @@ const selectedNavItemClass = css`
   }
 `;
 
-const MenuButton = styled('div')`
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 50%;
-  color: #a4a7c6;
-  margin-top: 15px;
-  margin-left: 18px;
-`;
-
 const RevisedLandingScreen = () => (
-  <Container>
-    <AsideWrapper>
-      <Aside>
-        <MenuButton>
-          <UilBars size="28" />
-        </MenuButton>
+  <MainLayout
+    aside={
+      <Sidebar>
         <SideNav>
           <NavSection>
             <NavHeading>Feeds</NavHeading>
@@ -121,12 +80,11 @@ const RevisedLandingScreen = () => (
             </ul>
           </NavSection>
         </SideNav>
-      </Aside>
-    </AsideWrapper>
-    <MainContent>
-      <NewsFeed />
-    </MainContent>
-  </Container>
+      </Sidebar>
+    }
+  >
+    <NewsFeed />
+  </MainLayout>
 );
 
 export default RevisedLandingScreen;
