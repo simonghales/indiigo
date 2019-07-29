@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import { BREAKPOINTS } from '../styles/responsive';
 
 const Container = styled('div')`
   display: flex;
@@ -12,6 +13,10 @@ const AsideWrapper = styled('div')`
   background-color: #ffffff;
   position: relative;
   border-right: 1px solid #f6f4f7;
+
+  ${BREAKPOINTS.mobile} {
+    display: none;
+  }
 `;
 
 const Aside = styled('aside')`

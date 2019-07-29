@@ -1,12 +1,20 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import { BREAKPOINTS } from '../../styles/responsive';
 
 const Container = styled('div')`
   font-family: 'Merriweather', serif;
   font-size: 16px;
   line-height: 1.75;
-  padding-bottom: 100px;
+
+  ${BREAKPOINTS.desktop} {
+    padding-bottom: 100px;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    font-size: 14px;
+  }
 `;
 
 const Header = styled('header')`
@@ -16,6 +24,10 @@ const Header = styled('header')`
 const Heading = styled('h1')`
   font-weight: 600;
   font-size: 2em;
+
+  ${BREAKPOINTS.mobile} {
+    font-size: 1.9em;
+  }
 `;
 
 const Body = styled('section')`

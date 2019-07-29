@@ -8,10 +8,14 @@ import Sidebar, { MenuButton } from '../../components/Sidebar';
 import PostSidebar from './components/PostSidebar';
 import Post from '../../components/revised/Post';
 import PostComments from './components/PostComments';
+import { BREAKPOINTS } from '../../styles/responsive';
 
 const Container = styled('div')`
-  display: flex;
   position: relative;
+
+  ${BREAKPOINTS.desktop} {
+    display: flex;
+  }
 `;
 
 const PostContainer = styled('div')`
@@ -25,17 +29,31 @@ const PostInner = styled('div')`
   position: sticky;
   top: 0;
   padding: 0 60px;
+
+  ${BREAKPOINTS.mobile} {
+    padding: 0 24px;
+  }
 `;
 
 const CommentsContainer = styled('div')`
-  min-width: 310px;
-  flex: 1;
+  ${BREAKPOINTS.desktop} {
+    min-width: 310px;
+    flex: 1;
+  }
+  ${BREAKPOINTS.mobile} {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 `;
 
 const CommentsInner = styled('div')`
   //position: sticky;
   //top: 0;
   padding: 0 30px;
+
+  ${BREAKPOINTS.mobile} {
+    padding: 0 10px;
+  }
 `;
 
 const RevisedPostScreen = () => (

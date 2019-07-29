@@ -1,6 +1,8 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import { css } from 'emotion';
+import { placeholderCss } from '../../styles/shared/placeholder';
 
 const Info = styled('div')`
   display: flex;
@@ -13,6 +15,20 @@ const Thumbnail = styled('div')`
   height: 40px;
   border-radius: 50%;
   margin-right: 6px;
+`;
+
+const placeholderNameClass = css`
+  &::before {
+    ${placeholderCss};
+    content: 'loading.........';
+  }
+`;
+
+const placeholderHandleClass = css`
+  &::before {
+    ${placeholderCss};
+    content: 'loading...';
+  }
 `;
 
 const Name = styled('div')`
@@ -29,6 +45,16 @@ const Handle = styled('div')`
 `;
 
 type Props = {};
+
+export const PlaceholderProfileBadge = () => (
+  <Info>
+    <Thumbnail></Thumbnail>
+    <div>
+      <Name className={placeholderNameClass}></Name>
+      <Handle className={placeholderHandleClass}></Handle>
+    </div>
+  </Info>
+);
 
 const ProfileBadge = () => (
   <Info>

@@ -22,7 +22,7 @@ const Button = styled('button')`
 
   &:active,
   &:hover {
-    color: rgb(83, 82, 98);
+    color: rgb(138, 147, 240);
   }
 
   svg {
@@ -52,12 +52,12 @@ const variants = {
   initial: {
     scale: 0.5,
     opacity: 0,
-    backgroundColor: 'rgb(244, 245, 252)',
+    backgroundColor: 'rgb(239, 241, 255)',
   },
   hovered: {
     opacity: 1,
     scale: 1,
-    backgroundColor: 'rgb(244, 245, 252)',
+    backgroundColor: 'rgb(239, 241, 255)',
   },
   tapped: {
     opacity: 1,

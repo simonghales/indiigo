@@ -2,9 +2,12 @@
 import React from 'react';
 import styled from 'react-emotion';
 import CommentsList from '../../../components/revised/CommentsList';
+import { BREAKPOINTS } from '../../../styles/responsive';
 
 const Container = styled('div')`
-  padding-top: 30px;
+  ${BREAKPOINTS.desktop} {
+    padding-top: 30px;
+  }
 `;
 
 type Props = {};

@@ -9,18 +9,30 @@ import UilAngleDown from '@iconscout/react-unicons/icons/uil-angle-down';
 import styled from 'react-emotion';
 import { css } from 'emotion';
 import { Link } from '@reach/router';
-import ProfileBadge from '../../../components/revised/ProfileBadge';
+import ProfileBadge, { PlaceholderProfileBadge } from '../../../components/revised/ProfileBadge';
+import RoundButton from '../../../components/revised/RoundButton';
+import { placeholderCss } from '../../../styles/shared/placeholder';
+import { BREAKPOINTS } from '../../../styles/responsive';
 
 const Article = styled('article')`
-  display: flex;
+  ${BREAKPOINTS.desktop} {
+    display: flex;
+  }
 `;
 
 const Aside = styled('aside')`
-  width: 190px;
-  padding-right: 10px;
   position: relative;
-  //padding-bottom: 20px;
-  padding-top: 23px;
+  ${BREAKPOINTS.desktop} {
+    width: 190px;
+    padding-right: 10px;
+    //padding-bottom: 20px;
+    padding-top: 23px;
+  }
+  ${BREAKPOINTS.mobile} {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `;
 
 const AsideContent = styled('div')`
@@ -32,6 +44,20 @@ const Description = styled('p')`
   margin-top: 8px;
   font-size: 12px;
   color: #74779c;
+`;
+
+const placeholderDescriptionClass = css`
+  &::after {
+    ${placeholderCss};
+    content: 'loading....................';
+  }
+`;
+
+const placeholderTitleClass = css`
+  &::after {
+    ${placeholderCss};
+    content: 'loading......................................................';
+  }
 `;
 
 const Options = styled('div')`
@@ -58,20 +84,28 @@ const RightOption = styled('div')`
   justify-content: flex-end;
 `;
 
-const OptionIcon = styled('div')`
+const OptionIcon = styled(RoundButton)`
   width: 24px;
   height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const OptionLabel = styled('div')`
   margin-left: 2px;
 `;
 
+const Main = styled('div')`
+  flex: 1;
+
+  ${BREAKPOINTS.mobile} {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+`;
+
 const CardWrapper = styled('div')`
   position: relative;
+  width: 100%;
+  max-width: 600px;
 
   &::before {
     content: '';
@@ -87,11 +121,14 @@ const CardWrapper = styled('div')`
 
 const Card = styled('div')`
   position: relative;
-  width: 600px;
   background-color: #ffffff;
   border: 1px solid #f0eefa;
   border-radius: 8px;
   padding: 20px 22px 28px 22px;
+
+  ${BREAKPOINTS.mobile} {
+    padding: 15px 10px 28px 10px;
+  }
 `;
 
 const CardTitle = styled('h3')`
@@ -102,6 +139,11 @@ const CardTitle = styled('h3')`
   padding-left: 10px;
 `;
 
+const cardPreviewPlaceholderClass = css`
+  background-image: none;
+  box-shadow: none;
+`;
+
 const CardPreview = styled('div')`
   background: #f4f5fc;
   height: 296px;
@@ -110,6 +152,10 @@ const CardPreview = styled('div')`
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.075);
+
+  ${BREAKPOINTS.mobile} {
+    height: 50vw;
+  }
 `;
 
 const CardIcons = styled('div')`
@@ -132,6 +178,27 @@ const Icon = styled('div')`
 const ProfileWrapper = styled('div')`
   margin-left: -7px;
 `;
+
+export const PlaceholderPostCard = () => (
+  <Article>
+    <Aside>
+      <AsideContent>
+        <ProfileWrapper>
+          <PlaceholderProfileBadge />
+        </ProfileWrapper>
+        <Description className={placeholderDescriptionClass} />
+      </AsideContent>
+    </Aside>
+    <Main>
+      <CardWrapper>
+        <Card>
+          <CardTitle className={placeholderTitleClass} />
+          <CardPreview className={cardPreviewPlaceholderClass} />
+        </Card>
+      </CardWrapper>
+    </Main>
+  </Article>
+);
 
 const PostCard = () => (
   <Article>
@@ -169,25 +236,27 @@ const PostCard = () => (
         </div>
       </AsideContent>
     </Aside>
-    <CardWrapper>
-      <Card>
-        <CardTitle>
-          <Link to="/revised/post">indiigo announcement</Link>
-        </CardTitle>
-        <CardPreview />
-        <CardIcons>
-          <Icon>
-            <UilScenery size="14" />
-          </Icon>
-          <Icon>
-            <UilVideo size="17" />
-          </Icon>
-          <Icon>
-            <UilMusic size="14" />
-          </Icon>
-        </CardIcons>
-      </Card>
-    </CardWrapper>
+    <Main>
+      <CardWrapper>
+        <Card>
+          <CardTitle>
+            <Link to="/revised/post">indiigo announcement</Link>
+          </CardTitle>
+          <CardPreview />
+          <CardIcons>
+            <Icon>
+              <UilScenery size="14" />
+            </Icon>
+            <Icon>
+              <UilVideo size="17" />
+            </Icon>
+            <Icon>
+              <UilMusic size="14" />
+            </Icon>
+          </CardIcons>
+        </Card>
+      </CardWrapper>
+    </Main>
   </Article>
 );
 
