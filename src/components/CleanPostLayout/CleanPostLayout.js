@@ -7,7 +7,8 @@ import {
   CleanTextImagePost,
   CleanTextPost,
 } from '../../screens/CleanLandingScreen/components/CleanPost/CleanPost';
-import SiteHeader, { headerHeight } from './components/SiteHeader/SiteHeader';
+import SiteHeader, { headerHeight, mobileHeaderHeight } from './components/SiteHeader/SiteHeader';
+import { BREAKPOINTS } from '../../styles/responsive';
 
 const Wrapper = styled('div')`
   color: #242435;
@@ -20,6 +21,11 @@ const Wrapper = styled('div')`
 const Main = styled('main')`
   padding-top: ${headerHeight}px;
   margin-bottom: 200px;
+
+  ${BREAKPOINTS.mobile} {
+    padding-top: ${mobileHeaderHeight}px;
+    margin-bottom: 50px;
+  }
 `;
 
 type Props = {

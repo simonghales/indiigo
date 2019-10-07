@@ -9,6 +9,7 @@ import PostHeader from './components/PostHeader/PostHeader';
 import { BREAKPOINTS } from '../../../../styles/responsive';
 
 export const headerHeight = 60;
+export const mobileHeaderHeight = 50;
 
 const Header = styled('header')`
   position: fixed;
@@ -19,6 +20,10 @@ const Header = styled('header')`
   background-color: #ffffff;
   z-index: 100;
   box-shadow: 0 1px 5px 0 rgba(38, 49, 65, 0.04);
+
+  ${BREAKPOINTS.mobile} {
+    height: ${mobileHeaderHeight}px;
+  }
 `;
 
 const HeaderContent = styled('div')`
@@ -30,7 +35,7 @@ const HeaderContent = styled('div')`
   height: 100%;
 
   ${BREAKPOINTS.mobile} {
-    padding: 0 10px;
+    padding: 0 7px;
   }
 `;
 

@@ -16,7 +16,7 @@ const MainContent = styled('div')`
   margin: 0 auto;
 
   ${BREAKPOINTS.mobile} {
-    padding: 0 15px;
+    padding: 0 14px;
   }
 `;
 
@@ -28,6 +28,7 @@ const Posts = styled('section')`
 
   ${BREAKPOINTS.mobile} {
     padding: 0;
+    margin-top: 0;
   }
 `;
 
@@ -52,8 +53,10 @@ const PostWrapper = styled('div')`
     margin-top: 30px;
   }
 
-  &:first-child {
-    margin-top: 0;
+  ${BREAKPOINTS.desktop} {
+    &:first-child {
+      margin-top: 0;
+    }
   }
 `;
 

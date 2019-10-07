@@ -2,9 +2,14 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { smallTextCss } from '../../../../../../styles/typography';
+import { BREAKPOINTS } from '../../../../../../styles/responsive';
 
 const Container = styled('div')`
   margin-left: 39px;
+
+  ${BREAKPOINTS.mobile} {
+    margin-left: 2px;
+  }
 `;
 
 const UserInfo = styled('div')`

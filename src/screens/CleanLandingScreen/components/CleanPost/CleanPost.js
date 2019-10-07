@@ -76,6 +76,10 @@ const Thumbnail = styled('div')`
   background-position: center;
   background-image: url(${avatar});
   cursor: pointer;
+
+  ${BREAKPOINTS.mobile} {
+    margin-left: -7px;
+  }
 `;
 
 const PostBodyWrapper = styled('div')`

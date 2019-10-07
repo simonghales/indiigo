@@ -2,21 +2,37 @@
 import React from 'react';
 import styled from 'react-emotion';
 import CleanPostLayout from '../../components/CleanPostLayout/CleanPostLayout';
+import { BREAKPOINTS } from '../../styles/responsive';
 
 const MainContent = styled('section')`
   max-width: 1248px;
   padding: 0 50px;
   margin: 0 auto;
+
+  ${BREAKPOINTS.mobile} {
+    padding: 0 14px;
+  }
 `;
 
 const Post = styled('section')`
-  padding: 0 87px;
   max-width: ${700 + 87 * 2}px;
   margin-top: 40px;
   font-family: 'Open Sans';
   font-size: 14px;
   color: #242435;
   letter-spacing: 0.47px;
+
+  ${BREAKPOINTS.desktop} {
+    padding: 0 87px;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    padding: 0 7px;
+  }
+
+  ${BREAKPOINTS.mobile} {
+    margin-top: 30px;
+  }
 
   h1 {
     font-weight: 600;
@@ -34,6 +50,12 @@ const LargeImage = styled('div')`
   margin: 25px -10px 25px -10px;
   height: 400px;
   background-color: #f0eefa;
+
+  ${BREAKPOINTS.mobile} {
+    margin-left: -21px;
+    margin-right: -21px;
+    height: 33vh;
+  }
 `;
 
 type Props = {};
