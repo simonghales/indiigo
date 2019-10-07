@@ -38,3 +38,9 @@ export const smallBoldCss = css`
   color: #a0abff;
   letter-spacing: 0.16px;
 `;
+
+export const smallTextCss = css`
+  font-size: 10px;
+  color: #9094ac;
+  letter-spacing: 0.33px;
+`;

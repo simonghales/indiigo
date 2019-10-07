@@ -6,9 +6,15 @@ import avatar from '../../../../avatar.jpg';
 import TextBody from './components/TextBody';
 import TextImageBody from './components/TextImageBody';
 import ImageBody from './components/ImageBody';
+import { smallTextCss } from '../../../../styles/typography';
+import { BREAKPOINTS } from '../../../../styles/responsive';
 
 const Header = styled('header')`
   margin-bottom: 15px;
+
+  ${BREAKPOINTS.mobile} {
+    margin-bottom: 10px;
+  }
 `;
 
 const UserIntro = styled('div')`
@@ -21,9 +27,7 @@ const Details = styled('div')`
 `;
 
 const UserInfo = styled('div')`
-  font-size: 10px;
-  color: #9094ac;
-  letter-spacing: 0.33px;
+  ${smallTextCss};
 
   a {
     display: inline-block;
@@ -41,8 +45,8 @@ const Name = styled('a')`
 
   &:hover {
     text-decoration: underline;
-    text-decoration-width: 3px;
-    text-decoration-thickness: 3px;
+    //text-decoration-width: 3px;
+    //text-decoration-thickness: 3px;
   }
 `;
 
@@ -107,6 +111,11 @@ const Options = styled('div')`
   color: #9094ac;
   letter-spacing: 0.3px;
   margin-left: 16px;
+
+  ${BREAKPOINTS.mobile} {
+    font-size: 12px;
+    margin-left: 8px;
+  }
 `;
 
 const Option = styled('div')`
@@ -116,6 +125,10 @@ const Option = styled('div')`
 
   &:not(:last-child) {
     margin-right: 10px;
+
+    ${BREAKPOINTS.mobile} {
+      margin-right: 12px;
+    }
   }
 `;
 
@@ -124,6 +137,10 @@ const OptionIcon = styled('div')`
   justify-content: center;
   align-items: center;
   margin-right: 2px;
+
+  ${BREAKPOINTS.mobile} {
+    margin-right: 4px;
+  }
 
   svg {
     display: block;
