@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { FaAngleDown } from 'react-icons/fa';
+import { DATA_POSTS } from '../../data/posts';
 import CleanPost, {
   CleanImagePost,
   CleanTextImagePost,
@@ -9,6 +10,7 @@ import CleanPost, {
 } from './components/CleanPost/CleanPost';
 import CleanPostLayout from '../../components/CleanPostLayout/CleanPostLayout';
 import { BREAKPOINTS } from '../../styles/responsive';
+import Post from '../../components/Post/Post';
 
 const MainContent = styled('div')`
   max-width: 1248px;
@@ -62,51 +64,29 @@ const PostWrapper = styled('div')`
 
 type Props = {};
 
-const CleanLandingScreen = () => (
-  <MainContent>
-    <Posts>
-      <Column>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanImagePost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextImagePost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-      </Column>
-      <Column>
-        <PostWrapper>
-          <CleanTextImagePost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanImagePost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextImagePost />
-        </PostWrapper>
-        <PostWrapper>
-          <CleanTextPost />
-        </PostWrapper>
-      </Column>
-    </Posts>
-  </MainContent>
-);
+const CleanLandingScreen = () => {
+  const firstList = DATA_POSTS;
+  const secondList = DATA_POSTS.slice().reverse();
+  return (
+    <MainContent>
+      <Posts>
+        <Column>
+          {firstList.map(post => (
+            <PostWrapper key={post.uid}>
+              <Post data={post} />
+            </PostWrapper>
+          ))}
+        </Column>
+        <Column>
+          {secondList.map(post => (
+            <PostWrapper key={post.uid}>
+              <Post data={post} />
+            </PostWrapper>
+          ))}
+        </Column>
+      </Posts>
+    </MainContent>
+  );
+};
 
 export default CleanLandingScreen;

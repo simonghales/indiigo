@@ -1,13 +1,24 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import ReactTimeAgo from 'react-time-ago';
 import { FaComment, FaRegComment, FaRegComments, FaRegHeart } from 'react-icons/fa';
-import avatar from '../../../../avatar.jpg';
 import TextBody from './components/TextBody';
 import TextImageBody from './components/TextImageBody';
 import ImageBody from './components/ImageBody';
 import { smallTextCss } from '../../../../styles/typography';
 import { BREAKPOINTS } from '../../../../styles/responsive';
+import type { PostMdl } from '../../../../data/posts';
+import {
+  getAuthorAvatar,
+  getAuthorHandle,
+  getAuthorName,
+  getPostAuthor,
+  getPostCreatedDate,
+  getPostImagePreview,
+  getPostIntroduction,
+  getPostTextImagePreview,
+} from '../../../../data/posts';
 
 const Header = styled('header')`
   margin-bottom: 15px;
@@ -74,7 +85,7 @@ const Thumbnail = styled('div')`
   margin-left: -6px;
   background-size: cover;
   background-position: center;
-  background-image: url(${avatar});
+  background-image: url(${props => props.image});
   cursor: pointer;
 
   ${BREAKPOINTS.mobile} {
@@ -153,59 +164,77 @@ const OptionIcon = styled('div')`
 
 type Props = {
   children: any,
+  data: PostMdl,
 };
 
-const CleanPost = ({ children }: Props) => (
-  <article>
-    <Header>
-      <UserIntro>
-        <Thumbnail />
-        <Details>
-          <UserInfo>
-            <Name>Simon Hales</Name> <Handler>@simonghales</Handler> <span>4h</span>
-          </UserInfo>
-          <Intro>Check out my awesome new post! Pretty nifty aye?</Intro>
-        </Details>
-      </UserIntro>
-    </Header>
-    <PostBodyWrapper>
-      <PostBody>{children}</PostBody>
-    </PostBodyWrapper>
-    <Footer>
-      <Options>
-        <Option>
-          <OptionIcon>
-            <FaRegHeart />
-          </OptionIcon>
-          12
-        </Option>
-        <Option>
-          <OptionIcon>
-            <FaRegComment />
-          </OptionIcon>
-          4
-        </Option>
-      </Options>
-    </Footer>
-  </article>
-);
+const CleanPost = ({ children, data }: Props) => {
+  const author = getPostAuthor(data);
+  return (
+    <article>
+      <Header>
+        <UserIntro>
+          <Thumbnail image={getAuthorAvatar(author)} />
+          <Details>
+            <UserInfo>
+              <Name>{getAuthorName(author)}</Name> <Handler>{getAuthorHandle(author)}</Handler>{' '}
+              <span>
+                <ReactTimeAgo date={getPostCreatedDate(data)} timeStyle="twitter" />
+              </span>
+            </UserInfo>
+            <Intro>{getPostIntroduction(data)}</Intro>
+          </Details>
+        </UserIntro>
+      </Header>
+      <PostBodyWrapper>
+        <PostBody>{children}</PostBody>
+      </PostBodyWrapper>
+      <Footer>
+        <Options>
+          <Option>
+            <OptionIcon>
+              <FaRegHeart />
+            </OptionIcon>
+            12
+          </Option>
+          <Option>
+            <OptionIcon>
+              <FaRegComment />
+            </OptionIcon>
+            4
+          </Option>
+        </Options>
+      </Footer>
+    </article>
+  );
+};
 
 export default CleanPost;
 
-export const CleanTextPost = () => (
-  <CleanPost>
-    <TextBody />
-  </CleanPost>
-);
+export const CleanTextPost = props => {
+  const { data } = props;
+  return (
+    <CleanPost {...props}>
+      <TextBody text={data.content.preview} />
+    </CleanPost>
+  );
+};
 
-export const CleanTextImagePost = () => (
-  <CleanPost>
-    <TextImageBody />
-  </CleanPost>
-);
+export const CleanTextImagePost = props => {
+  const { data } = props;
+  const preview = getPostTextImagePreview(data);
+  return (
+    <CleanPost {...props}>
+      <TextImageBody preview={preview} />
+    </CleanPost>
+  );
+};
 
-export const CleanImagePost = () => (
-  <CleanPost>
-    <ImageBody />
-  </CleanPost>
-);
+export const CleanImagePost = props => {
+  const { data } = props;
+  const imagePreview = getPostImagePreview(data);
+  return (
+    <CleanPost {...props}>
+      <ImageBody imagePreview={imagePreview} />
+    </CleanPost>
+  );
+};

@@ -6,7 +6,7 @@ import { __RouterContext } from 'react-router-dom';
 import { css } from 'emotion';
 import { gridLayoutCss, maxWidthLayoutCss, mobileSidePadding } from '../../styles/layout';
 import ProfileBadge from '../../components/ProfileBadge';
-import Post from '../../components/Post/Post';
+import OldPost from '../../components/OldPost/OldPost';
 import TransitionSlider from './components/TransitionSlider';
 import SiteLogo from '../../components/SiteLogo';
 import PostAside from './components/PostAside';
@@ -242,7 +242,7 @@ const PostScreen = () => {
         <Main>
           <MainBackground>{animate && <TransitionSlider />}</MainBackground>
           <MainContent>
-            <Post />
+            <OldPost />
           </MainContent>
         </Main>
       </Container>

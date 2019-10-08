@@ -2,19 +2,20 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import { BREAKPOINTS } from '../../../../../styles/responsive';
 
 const Container = styled('div')`
-  > a {
-    display: block;
-    padding: 23px 20px 28px 20px;
-    cursor: pointer;
+  padding: 23px 20px 28px 20px;
+  cursor: pointer;
 
-    ${BREAKPOINTS.mobile} {
-      padding: 15px 10px 12px 10px;
-    }
+  ${BREAKPOINTS.mobile} {
+    padding: 15px 10px 12px 10px;
   }
 
+  h1,
+  h2,
+  h3,
   h4 {
     font-family: 'Open Sans';
     font-weight: 600;
@@ -40,7 +41,7 @@ const ReadMore = styled('div')`
     margin-top: 10px;
   }
 
-  a {
+  > span {
     font-family: 'Open Sans';
     font-size: 11px;
     color: #9094ac;
@@ -52,23 +53,18 @@ const ReadMore = styled('div')`
   }
 `;
 
-type Props = {};
+type Props = {
+  text: string,
+};
 
-const TextBody = () => (
+const TextBody = ({ text }: Props) => (
   <Container>
-    <Link to="/post/id">
-      <h4>indiigo dev update #4</h4>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nulla massa, venenatis
-          ultrices aliquet sed, scelerisque nec orci.
-        </p>
-        <p>Donec mauris est, finibus nec neque sed, sagittis mattis ex.</p>
-      </div>
-      <ReadMore>
-        <a>read more...</a>
-      </ReadMore>
-    </Link>
+    <div>
+      <ReactMarkdown source={text} />
+    </div>
+    <ReadMore>
+      <span>read more...</span>
+    </ReadMore>
   </Container>
 );
 
