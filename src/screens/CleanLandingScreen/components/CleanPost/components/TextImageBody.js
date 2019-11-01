@@ -6,6 +6,7 @@ import TextBody from './TextBody';
 import boys from '../../../../../boys.jpg';
 import type { TextImagePreviewMdl } from '../../../../../data/posts';
 import { getImagePreviewUrl } from '../../../../../data/posts';
+import PostLink from './PostLink';
 
 const Image = styled('div')`
   height: 200px;
@@ -24,10 +25,10 @@ const TextImageBody = ({ preview }: Props) => {
   const { banner, preview: text } = preview;
   const url = getImagePreviewUrl(banner);
   return (
-    <Link to="/post/id">
+    <React.Fragment>
       <Image url={url} />
       <TextBody text={text} />
-    </Link>
+    </React.Fragment>
   );
 };
 

@@ -1,14 +1,18 @@
 // @flow
 import React from 'react';
 import styled from 'react-emotion';
+import { FaAngleDown, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { smallTextCss } from '../../../../../../styles/typography';
 import { BREAKPOINTS } from '../../../../../../styles/responsive';
+import { HeaderButton } from '../FeedHeader/FeedHeader';
 
 const Container = styled('div')`
-  margin-left: 39px;
+  display: flex;
+  align-items: center;
+  //margin-left: 39px;
 
   ${BREAKPOINTS.mobile} {
-    margin-left: 2px;
+    //margin-left: 2px;
   }
 `;
 
@@ -56,10 +60,15 @@ type Props = {};
 
 const PostHeader = () => (
   <Container>
-    <UserInfo>
-      <Name>Simon Hales</Name> <Handler>@simonghales</Handler> <span>4h</span>
-    </UserInfo>
-    <Intro>Check out my awesome new post! Pretty nifty aye?</Intro>
+    <HeaderButton>
+      <FaRegHeart />
+    </HeaderButton>
+    <div>
+      <UserInfo>
+        <Name>Simon Hales</Name> <Handler>@simonghales</Handler> <span>4h</span>
+      </UserInfo>
+      <Intro>Check out my awesome new post! Pretty nifty aye?</Intro>
+    </div>
   </Container>
 );
 

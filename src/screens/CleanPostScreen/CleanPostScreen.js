@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 import CleanPostLayout from '../../components/CleanPostLayout/CleanPostLayout';
 import { BREAKPOINTS } from '../../styles/responsive';
 
-const MainContent = styled('section')`
+export const MainContent = styled('section')`
   max-width: 1248px;
   padding: 0 50px;
   margin: 0 auto;
@@ -23,7 +23,7 @@ const Post = styled('section')`
   letter-spacing: 0.47px;
 
   ${BREAKPOINTS.desktop} {
-    padding: 0 87px;
+    padding: 0 72px;
   }
 
   ${BREAKPOINTS.mobile} {

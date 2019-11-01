@@ -19,6 +19,7 @@ import {
   getPostIntroduction,
   getPostTextImagePreview,
 } from '../../../../data/posts';
+import PostLink from './components/PostLink';
 
 const Header = styled('header')`
   margin-bottom: 15px;
@@ -214,7 +215,9 @@ export const CleanTextPost = props => {
   const { data } = props;
   return (
     <CleanPost {...props}>
-      <TextBody text={data.content.preview} />
+      <PostLink>
+        <TextBody text={data.content.preview} />
+      </PostLink>
     </CleanPost>
   );
 };
@@ -224,7 +227,9 @@ export const CleanTextImagePost = props => {
   const preview = getPostTextImagePreview(data);
   return (
     <CleanPost {...props}>
-      <TextImageBody preview={preview} />
+      <PostLink>
+        <TextImageBody preview={preview} />
+      </PostLink>
     </CleanPost>
   );
 };
@@ -234,7 +239,9 @@ export const CleanImagePost = props => {
   const imagePreview = getPostImagePreview(data);
   return (
     <CleanPost {...props}>
-      <ImageBody imagePreview={imagePreview} />
+      <PostLink>
+        <ImageBody imagePreview={imagePreview} />
+      </PostLink>
     </CleanPost>
   );
 };

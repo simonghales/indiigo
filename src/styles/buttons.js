@@ -8,6 +8,7 @@ export const buttonResetCss = css`
   border: 0;
   background: none;
   font: inherit;
+  cursor: pointer;
 
   &:focus {
     outline: none;
